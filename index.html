@@ -717,6 +717,110 @@
       font-weight: 400;
     }
 
+    .plan {
+      width: 100%;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+    }
+
+    .plan:hover,
+    .plan:focus-visible {
+      border-color: var(--brown);
+      transform: translateY(-1px);
+    }
+
+    .plan.active {
+      border-color: var(--brown);
+      background: var(--brown);
+      color: #fff8ed;
+    }
+
+    .bundle-builder {
+      max-width: 520px;
+      margin-top: 22px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.48);
+    }
+
+    .bundle-builder-header,
+    .bundle-builder-footer,
+    .bundle-flavor {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .bundle-progress {
+      margin: 0;
+      font-size: .86rem;
+    }
+
+    .bundle-progress.complete { color: #356a3b; }
+    .bundle-progress.over { color: #9e2f24; }
+
+    .bundle-flavors {
+      display: grid;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .bundle-flavor {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bundle-flavor:last-child { border-bottom: 0; }
+
+    .bundle-flavor-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .bundle-flavor img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .bundle-quantity {
+      display: grid;
+      grid-template-columns: 32px 30px 32px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .bundle-quantity button {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fffaf2;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .bundle-reset {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .bundle-add[disabled] {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
     .reviews {
       background: #fff8ef;
       text-align: center;
@@ -2991,12 +3095,16 @@
 <div class="reveal">
 <p class="eyebrow">Mix it your way</p>
 <h2>Build your box.</h2>
-<div class="plans">
-<div class="plan"><strong>3 Bags</strong><span>$15</span></div>
-<div class="plan"><strong>6 Bags</strong><span>$25</span></div>
-<div class="plan"><strong>12 Bags</strong><span>$35</span></div>
+<div aria-label="Choose a bundle size" class="plans" role="group">
+<button aria-pressed="true" class="plan active" data-bundle-price="15" data-bundle-size="3" type="button"><strong>3 Bags</strong><span>$15</span></button>
+<button aria-pressed="false" class="plan" data-bundle-price="25" data-bundle-size="6" type="button"><strong>6 Bags</strong><span>$25</span></button>
+<button aria-pressed="false" class="plan" data-bundle-price="35" data-bundle-size="12" type="button"><strong>12 Bags</strong><span>$35</span></button>
 </div>
-<a class="button" href="#shop">Choose flavors</a>
+<div class="bundle-builder" id="bundle-builder">
+<div class="bundle-builder-header"><strong>Choose your flavors</strong><p aria-live="polite" class="bundle-progress" id="bundle-progress">0 of 3 bags selected</p></div>
+<div class="bundle-flavors" id="bundle-flavors"></div>
+<div class="bundle-builder-footer"><button class="bundle-reset" id="bundle-reset" type="button">Reset</button><button class="button bundle-add" disabled id="bundle-add" type="button">Add 3-bag box · $15</button></div>
+</div>
 </div>
 </section>
 <section class="section short reviews" id="reviews">
@@ -3240,10 +3348,83 @@
       }
     ]));
 
+    const bundlePlans = [...document.querySelectorAll("[data-bundle-size]")];
+    const bundleFlavors = document.querySelector("#bundle-flavors");
+    const bundleProgress = document.querySelector("#bundle-progress");
+    const bundleAddButton = document.querySelector("#bundle-add");
+    const bundleSelection = Object.fromEntries(Object.keys(products).map((id) => [id, 0]));
+    let activeBundleSize = 3;
+    let activeBundlePrice = 15;
+
+    function selectedBundleCount() {
+      return Object.values(bundleSelection).reduce((total, quantity) => total + quantity, 0);
+    }
+
+    function renderBundleBuilder() {
+      const selected = selectedBundleCount();
+      const remaining = activeBundleSize - selected;
+
+      bundleFlavors.innerHTML = Object.values(products).map((product) => `
+        <div class="bundle-flavor" data-bundle-product="${product.id}">
+          <div class="bundle-flavor-name"><img src="${product.image}" alt=""><span>${product.name}</span></div>
+          <div class="bundle-quantity" aria-label="${product.name} quantity">
+            <button type="button" data-bundle-action="decrease" aria-label="Remove one ${product.name}" ${bundleSelection[product.id] ? "" : "disabled"}>−</button>
+            <span aria-live="polite">${bundleSelection[product.id]}</span>
+            <button type="button" data-bundle-action="increase" aria-label="Add one ${product.name}" ${remaining > 0 ? "" : "disabled"}>+</button>
+          </div>
+        </div>`).join("");
+
+      bundleProgress.textContent = remaining === 0
+        ? `Your ${activeBundleSize}-bag box is ready`
+        : `${selected} of ${activeBundleSize} bags selected`;
+      bundleProgress.classList.toggle("complete", remaining === 0);
+      bundleAddButton.disabled = remaining !== 0;
+      bundleAddButton.textContent = `Add ${activeBundleSize}-bag box · ${currency.format(activeBundlePrice)}`;
+    }
+
+    function resetBundleSelection() {
+      Object.keys(bundleSelection).forEach((id) => { bundleSelection[id] = 0; });
+      renderBundleBuilder();
+    }
+
     let cartState = loadCart();
     let toastTimer;
     let lastFocusedElement = null;
     let activeProductId = null, activeSlide = 0, modalQuantity = 1, productTouchStartX = 0;
+
+    bundlePlans.forEach((plan) => plan.addEventListener("click", () => {
+      activeBundleSize = Number(plan.dataset.bundleSize);
+      activeBundlePrice = Number(plan.dataset.bundlePrice);
+      bundlePlans.forEach((option) => {
+        const isActive = option === plan;
+        option.classList.toggle("active", isActive);
+        option.setAttribute("aria-pressed", String(isActive));
+      });
+      resetBundleSelection();
+    }));
+
+    bundleFlavors.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-bundle-action]");
+      const row = button?.closest("[data-bundle-product]");
+      if (!button || !row) return;
+      const id = row.dataset.bundleProduct;
+      if (button.dataset.bundleAction === "increase" && selectedBundleCount() < activeBundleSize) bundleSelection[id] += 1;
+      if (button.dataset.bundleAction === "decrease" && bundleSelection[id] > 0) bundleSelection[id] -= 1;
+      renderBundleBuilder();
+    });
+
+    document.querySelector("#bundle-reset").addEventListener("click", resetBundleSelection);
+    bundleAddButton.addEventListener("click", () => {
+      if (selectedBundleCount() !== activeBundleSize) return;
+      Object.entries(bundleSelection).forEach(([id, quantity]) => {
+        if (quantity) cartState[id] = Math.min((cartState[id] || 0) + quantity, 20);
+      });
+      saveCart();
+      renderCart();
+      showToast(`${activeBundleSize}-bag box added to cart`);
+      resetBundleSelection();
+      openCart();
+    });
 
     function showProductSlide(index) {
       const count = productSlides.children.length;
@@ -3259,7 +3440,7 @@
       lastFocusedElement = document.activeElement;
       activeProductId = id; modalQuantity = 1; modalQuantityValue.textContent = "1";
       productModalTitle.textContent = product.name;
-      productModalPrice.textContent = `${currency.format(product.price)} · 5 oz bag`;
+      productModalPrice.textContent = `${currency.format(product.price)} · 2.5 oz bag`;
       productModalDescription.textContent = data.description;
       productModalIngredients.textContent = data.ingredients;
       productSlides.innerHTML = data.images.map((src, i) => `<div class="product-slide"><img src="${src}" alt="${product.name} product view ${i + 1}"></div>`).join("");
@@ -3630,6 +3811,7 @@
 
     initInstagramLoop();
 
+    renderBundleBuilder();
     renderCart();
   </script>
 </body>
