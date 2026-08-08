@@ -1380,6 +1380,28 @@
 
     .cart-item-price { color: var(--muted); font-size: 0.9rem; }
 
+    .bundle-cart-item {
+      grid-template-columns: 74px minmax(0, 1fr) auto;
+      background: rgba(229, 215, 196, 0.22);
+    }
+
+    .bundle-cart-flavors {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.45;
+    }
+
+    .bundle-cart-badge {
+      display: inline-block;
+      margin-bottom: 5px;
+      color: var(--rust);
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
     .cart-item-actions {
       display: grid;
       justify-items: end;
@@ -3308,10 +3330,6 @@
 </div>
 </footer>
 <script>
-    // If the storefront is on GitHub Pages and the API is hosted elsewhere,
-    // replace this with the complete HTTPS endpoint URL.
-    const CHECKOUT_ENDPOINT = "/api/create-checkout-session";
-
     const nav = document.querySelector(".nav");
     const cartButton = document.querySelector(".cart");
     const cartCount = document.querySelector("#cart-count");
@@ -3436,6 +3454,7 @@
     }
 
     let cartState = loadCart();
+    let bundleCartState = loadBundleCart();
     let toastTimer;
     let lastFocusedElement = null;
     let activeProductId = null, activeSlide = 0, modalQuantity = 1, productTouchStartX = 0;
@@ -3464,8 +3483,11 @@
     document.querySelector("#bundle-reset").addEventListener("click", resetBundleSelection);
     bundleAddButton.addEventListener("click", () => {
       if (selectedBundleCount() !== activeBundleSize) return;
-      Object.entries(bundleSelection).forEach(([id, quantity]) => {
-        if (quantity) cartState[id] = Math.min((cartState[id] || 0) + quantity, 20);
+      bundleCartState.push({
+        id: globalThis.crypto?.randomUUID?.() || `bundle-${Date.now()}`,
+        size: activeBundleSize,
+        price: activeBundlePrice,
+        selections: Object.fromEntries(Object.entries(bundleSelection).filter(([, quantity]) => quantity > 0))
       });
       saveCart();
       renderCart();
@@ -3516,19 +3538,37 @@
       }
     }
 
+    function loadBundleCart() {
+      try {
+        const stored = JSON.parse(localStorage.getItem("friedintallow-bundles") || "[]");
+        const planPrices = { 3: 15, 6: 25, 12: 35 };
+        return Array.isArray(stored) ? stored.filter((bundle) => {
+          const selectionCount = Object.entries(bundle.selections || {}).reduce(
+            (total, [id, quantity]) => total + (products[id] && Number.isInteger(quantity) && quantity > 0 ? quantity : 0), 0
+          );
+          return bundle.id && planPrices[bundle.size] === bundle.price && selectionCount === bundle.size;
+        }) : [];
+      } catch {
+        return [];
+      }
+    }
+
     function saveCart() {
       localStorage.setItem("friedintallow-cart", JSON.stringify(cartState));
+      localStorage.setItem("friedintallow-bundles", JSON.stringify(bundleCartState));
     }
 
     function itemCount() {
-      return Object.values(cartState).reduce((total, quantity) => total + quantity, 0);
+      const singleBags = Object.values(cartState).reduce((total, quantity) => total + quantity, 0);
+      return singleBags + bundleCartState.reduce((total, bundle) => total + bundle.size, 0);
     }
 
     function subtotal() {
-      return Object.entries(cartState).reduce(
+      const singleBagTotal = Object.entries(cartState).reduce(
         (total, [id, quantity]) => total + (products[id].price * quantity),
         0
       );
+      return singleBagTotal + bundleCartState.reduce((total, bundle) => total + bundle.price, 0);
     }
 
     function showToast(message) {
@@ -3547,12 +3587,12 @@
       cartError.textContent = "";
 
       const entries = Object.entries(cartState);
-      if (!entries.length) {
+      if (!entries.length && !bundleCartState.length) {
         cartItemsElement.innerHTML = '<div class="cart-empty">Your cart is empty.<br>Add a flavor to start your order.</div>';
         return;
       }
 
-      cartItemsElement.innerHTML = entries.map(([id, quantity]) => {
+      const singleItems = entries.map(([id, quantity]) => {
         const product = products[id];
         return `
           <article class="cart-item" data-cart-id="${id}">
@@ -3571,6 +3611,27 @@
             </div>
           </article>`;
       }).join("");
+
+      const bundleItems = bundleCartState.map((bundle) => {
+        const flavors = Object.entries(bundle.selections).map(([id, quantity]) =>
+          `${quantity} × ${products[id].name}`
+        ).join(" · ");
+        return `
+          <article class="cart-item bundle-cart-item" data-bundle-cart-id="${bundle.id}">
+            <img src="tallowbox.png" alt="${bundle.size}-bag FriedIntallow box" />
+            <div>
+              <span class="bundle-cart-badge">Bundle pricing</span>
+              <div class="cart-item-name">Build Your Box · ${bundle.size} Bags</div>
+              <div class="cart-item-price">${currency.format(bundle.price)} total</div>
+              <div class="bundle-cart-flavors">${flavors}</div>
+            </div>
+            <div class="cart-item-actions">
+              <button class="remove-item" type="button" data-action="remove-bundle">Remove</button>
+            </div>
+          </article>`;
+      }).join("");
+
+      cartItemsElement.innerHTML = bundleItems + singleItems;
     }
 
     function addToCart(id) {
@@ -3665,6 +3726,14 @@
       const actionButton = event.target.closest("button[data-action]");
       if (!actionButton) return;
 
+      if (actionButton.dataset.action === "remove-bundle") {
+        const bundleId = actionButton.closest("[data-bundle-cart-id]")?.dataset.bundleCartId;
+        bundleCartState = bundleCartState.filter((bundle) => bundle.id !== bundleId);
+        saveCart();
+        renderCart();
+        return;
+      }
+
       const id = actionButton.closest("[data-cart-id]")?.dataset.cartId;
       if (!id) return;
 
@@ -3714,34 +3783,29 @@
       }
     });
 
-    checkoutButton.addEventListener("click", async () => {
+    checkoutButton.addEventListener("click", () => {
       if (!itemCount()) return;
 
       checkoutButton.disabled = true;
       checkoutButton.textContent = "Opening checkout…";
       cartError.hidden = true;
 
-      try {
-        const response = await fetch(CHECKOUT_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            items: Object.entries(cartState).map(([id, quantity]) => ({ id, quantity }))
-          })
-        });
+      const checkoutOrder = {
+        id: globalThis.crypto?.randomUUID?.() || `order-${Date.now()}`,
+        currency: "USD",
+        subtotal: Number(subtotal().toFixed(2)),
+        bagCount: itemCount(),
+        singles: Object.entries(cartState).map(([id, quantity]) => ({
+          id, name: products[id].name, price: products[id].price, quantity
+        })),
+        bundles: bundleCartState.map((bundle) => ({
+          ...bundle,
+          flavors: Object.entries(bundle.selections).map(([id, quantity]) => ({ id, name: products[id].name, quantity }))
+        }))
+      };
 
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok || !result.url) {
-          throw new Error(result.error || "Checkout could not be started.");
-        }
-
-        window.location.assign(result.url);
-      } catch (error) {
-        cartError.textContent = `${error.message} Confirm the Stripe endpoint and Price IDs are configured.`;
-        cartError.hidden = false;
-        checkoutButton.disabled = false;
-        checkoutButton.textContent = "Buy now";
-      }
+      sessionStorage.setItem("friedintallow-checkout", JSON.stringify(checkoutOrder));
+      window.location.assign("checkout.html");
     });
 
     document.querySelector(".newsletter")?.addEventListener("submit", (event) => {
@@ -3752,6 +3816,7 @@
     const checkoutStatus = new URLSearchParams(window.location.search).get("checkout");
     if (checkoutStatus === "success") {
       cartState = {};
+      bundleCartState = [];
       saveCart();
       showToast("Order received. Thank you!");
       history.replaceState({}, "", window.location.pathname + window.location.hash);
