@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Checkout | FriedIntallow</title>
+  <link rel="icon" type="image/png" href="assets/friedintallow-logo-transparent.png">
+  <style>
+    :root { --cream:#f4ecdd; --paper:#fbf7ee; --ink:#2b231c; --muted:#6f655b; --line:rgba(43,35,28,.16); --brown:#2b2018; --rust:#9b321f; }
+    * { box-sizing: border-box; }
+    body { min-height:100vh; margin:0; color:var(--ink); background:radial-gradient(circle at 10% 0%,#fff,transparent 32rem),linear-gradient(135deg,#f8f0e3,#e9d9c4); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    a { color:inherit; }
+    .shell { width:min(1060px,calc(100% - 32px)); margin:0 auto; padding:34px 0 64px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:34px; }
+    .logo { width:190px; height:54px; object-fit:contain; }
+    .demo-badge { padding:8px 12px; border:1px solid var(--rust); border-radius:999px; color:var(--rust); font-size:.7rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    .checkout { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr); overflow:hidden; border:1px solid var(--line); border-radius:18px; background:var(--paper); box-shadow:0 34px 90px rgba(43,32,24,.16); }
+    .panel { padding:clamp(28px,5vw,58px); }
+    .summary { background:rgba(229,215,196,.46); border-left:1px solid var(--line); }
+    .eyebrow { margin:0 0 13px; font-size:.72rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { max-width:520px; margin:0 0 18px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(3rem,7vw,5.6rem); font-weight:400; line-height:.91; letter-spacing:-.045em; }
+    h2 { margin:0 0 22px; font-family:Georgia,"Times New Roman",serif; font-size:2rem; font-weight:400; }
+    .lede,.fine,.empty { color:var(--muted); line-height:1.6; }
+    .notice { margin:28px 0; padding:18px; border:1px solid rgba(155,50,31,.28); border-radius:10px; background:rgba(155,50,31,.055); }
+    .notice strong { display:block; margin-bottom:5px; }
+    .button { width:100%; min-height:54px; border:1px solid var(--brown); border-radius:999px; background:var(--brown); color:#fff8ec; font:inherit; font-size:.75rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; cursor:pointer; }
+    .button:disabled { opacity:.45; cursor:not-allowed; }
+    .back { display:inline-block; margin-top:18px; font-size:.82rem; }
+    .line { padding:15px 0; border-bottom:1px solid var(--line); }
+    .line-head,.total { display:flex; justify-content:space-between; gap:18px; }
+    .line strong { font-family:Georgia,"Times New Roman",serif; font-size:1.08rem; font-weight:400; }
+    .line-detail { margin-top:6px; color:var(--muted); font-size:.78rem; line-height:1.45; }
+    .total { align-items:end; padding-top:24px; }
+    .total strong { font-family:Georgia,"Times New Roman",serif; font-size:2rem; font-weight:400; }
+    .fine { margin:14px 0 0; font-size:.75rem; }
+    @media(max-width:760px){ .shell{width:min(100% - 20px,620px);padding-top:18px}.checkout{grid-template-columns:1fr}.summary{border-left:0;border-top:1px solid var(--line)}.topbar{margin-bottom:18px}.logo{width:150px} }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a href="index.html" aria-label="Return to FriedIntallow"><img class="logo" src="assets/friedintallow-logo-transparent.png" alt="FriedIntallow"></a>
+      <span class="demo-badge">Demo checkout</span>
+    </header>
+    <section class="checkout" aria-labelledby="checkout-title">
+      <div class="panel">
+        <p class="eyebrow">Secure checkout preview</p>
+        <h1 id="checkout-title">Almost yours.</h1>
+        <p class="lede">This page demonstrates the handoff to a hosted checkout. No payment details are requested, transmitted, or stored.</p>
+        <div class="notice"><strong>Sandbox only</strong>This is not a real Stripe payment session and no charge will be made.</div>
+        <button class="button" id="complete-order" type="button">Complete demo order</button>
+        <a class="back" href="index.html">← Return to cart</a>
+      </div>
+      <aside class="panel summary" aria-labelledby="summary-title">
+        <h2 id="summary-title">Order summary</h2>
+        <div id="order-lines"></div>
+        <div class="total"><span>Total</span><strong id="order-total">$0.00</strong></div>
+        <p class="fine">Taxes and shipping would be calculated by the real server-created Stripe Checkout Session.</p>
+      </aside>
+    </section>
+  </main>
+  <script>
+    const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+    const lines = document.querySelector("#order-lines");
+    const total = document.querySelector("#order-total");
+    const completeButton = document.querySelector("#complete-order");
+    let order = null;
+
+    try { order = JSON.parse(sessionStorage.getItem("friedintallow-checkout") || "null"); } catch { order = null; }
+
+    if (!order || !Number.isFinite(order.subtotal) || order.subtotal < 0) {
+      lines.innerHTML = '<p class="empty">Your checkout session is empty. Return to the shop and add an item first.</p>';
+      completeButton.disabled = true;
+    } else {
+      const bundleLines = (order.bundles || []).map((bundle) => `
+        <div class="line">
+          <div class="line-head"><strong>${bundle.size}-Bag Build Your Box</strong><span>${currency.format(bundle.price)}</span></div>
+          <div class="line-detail">${bundle.flavors.map((flavor) => `${flavor.quantity} × ${flavor.name}`).join(" · ")}</div>
+        </div>`).join("");
+      const singleLines = (order.singles || []).map((item) => `
+        <div class="line">
+          <div class="line-head"><strong>${item.quantity} × ${item.name}</strong><span>${currency.format(item.price * item.quantity)}</span></div>
+          <div class="line-detail">2.5 oz bag · ${currency.format(item.price)} each</div>
+        </div>`).join("");
+      lines.innerHTML = bundleLines + singleLines;
+      total.textContent = currency.format(order.subtotal);
+    }
+
+    completeButton.addEventListener("click", () => {
+      localStorage.removeItem("friedintallow-cart");
+      localStorage.removeItem("friedintallow-bundles");
+      sessionStorage.removeItem("friedintallow-checkout");
+      window.location.assign("index.html?checkout=success");
+    });
+  </script>
+</body>
+</html>
