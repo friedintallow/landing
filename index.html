@@ -2742,6 +2742,9 @@
 
     .instagram-track {
       animation: none !important;
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+      contain: layout paint;
     }
 
 
@@ -2988,92 +2991,31 @@
     </a>
 
     <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav1.JPG" alt="FriedIntallow Instagram post 9" width="1080" height="1350" loading="lazy" decoding="async" />
+      <img src="instav1.png" alt="FriedIntallow Instagram post 9" width="1080" height="1350" loading="lazy" decoding="async" />
     </a>
 
     <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav2.jpg" alt="FriedIntallow Instagram post 10" width="1080" height="1350" loading="lazy" decoding="async" />
+      <img src="instav2.png" alt="FriedIntallow Instagram post 10" width="1080" height="1350" loading="lazy" decoding="async" />
     </a>
 
     <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav3.jpg" alt="FriedIntallow Instagram post 11" width="1080" height="1350" loading="lazy" decoding="async" />
+      <img src="instav3.png" alt="FriedIntallow Instagram post 11" width="1080" height="1350" loading="lazy" decoding="async" />
     </a>
 
     <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav4.jpg" alt="FriedIntallow Instagram post 12" width="1080" height="1350" loading="lazy" decoding="async" />
+      <img src="instav4.png" alt="FriedIntallow Instagram post 12" width="1080" height="1350" loading="lazy" decoding="async" />
     </a>
 
     <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav5.jpg" alt="FriedIntallow Instagram post 13" width="1080" height="1350" loading="lazy" decoding="async" />
+      <img src="instav5.png" alt="FriedIntallow Instagram post 13" width="1080" height="1350" loading="lazy" decoding="async" />
     </a>
 
     <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav6.JPG" alt="FriedIntallow Instagram post 14" width="1080" height="1350" loading="lazy" decoding="async" />
+      <img src="instav6.png" alt="FriedIntallow Instagram post 14" width="1080" height="1350" loading="lazy" decoding="async" />
     </a>
 
   </div>
 
-
-  <!-- DUPLICATE SET FOR THE INFINITE SCROLL -->
-  <div class="instagram-set" aria-hidden="true">
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="insta1.png" alt="" width="1080" height="1350" loading="eager" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="insta2.png" alt="" width="1080" height="1350" loading="eager" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="insta3.png" alt="" width="1080" height="1350" loading="eager" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="insta4.png" alt="" width="1080" height="1350" loading="eager" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="insta5.png" alt="" width="1080" height="1350" loading="eager" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="insta6.png" alt="" width="1080" height="1350" loading="eager" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="insta7.png" alt="" width="1080" height="1350" loading="eager" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="insta8.png" alt="" width="1080" height="1350" loading="eager" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="instav1.JPG" alt="" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="instav2.jpg" alt="" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="instav3.jpg" alt="" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="instav4.jpg" alt="" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="instav5.jpg" alt="" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
-
-    <a class="instagram-card" href="https://instagram.com/friedintallow" tabindex="-1">
-      <img src="instav6.JPG" alt="" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
-
-  </div>
 
 </div>
 </div>
@@ -3830,42 +3772,37 @@
       const track = document.querySelector(".instagram-track");
       if (!viewport || !track) return;
 
-      let sets = [...track.querySelectorAll(".instagram-set")];
-      if (!sets.length) return;
+      const sourceSet = track.querySelector(".instagram-set");
+      if (!sourceSet) return;
 
-      // Guarantee one exact duplicate for a seamless reset.
-      if (sets.length === 1) {
-        const duplicate = sets[0].cloneNode(true);
-        duplicate.setAttribute("aria-hidden", "true");
-        duplicate.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
-        track.appendChild(duplicate);
-        sets = [...track.querySelectorAll(".instagram-set")];
-      }
-
-      // Keep duplicate links out of keyboard navigation.
-      sets.slice(1).forEach((set) => {
-        set.setAttribute("aria-hidden", "true");
-        set.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
-      });
+      // The source contains each image once. A hidden runtime clone is used only
+      // to make the end of the marquee meet its beginning without a blank gap.
+      [...track.querySelectorAll(".instagram-set")].slice(1).forEach((set) => set.remove());
+      sourceSet.querySelectorAll("img").forEach((image) => { image.loading = "eager"; });
+      const duplicate = sourceSet.cloneNode(true);
+      duplicate.setAttribute("aria-hidden", "true");
+      duplicate.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
+      duplicate.querySelectorAll("img").forEach((image) => { image.alt = ""; image.loading = "eager"; });
+      track.appendChild(duplicate);
 
       let marqueeAnimation = null;
       let resizeTimer = null;
       let pausedByUser = false;
+      let measuredViewportWidth = viewport.clientWidth;
 
       function buildLoop() {
         marqueeAnimation?.cancel();
         track.style.transform = "translate3d(0, 0, 0)";
 
-        const firstSet = sets[0];
         const trackStyles = getComputedStyle(track);
         const gap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
-        const loopDistance = firstSet.getBoundingClientRect().width + gap;
+        const loopDistance = sourceSet.getBoundingClientRect().width + gap;
 
         if (!Number.isFinite(loopDistance) || loopDistance <= 0) return;
 
-        // Match the original visual pace while using an exact pixel distance.
-        const pixelsPerSecond = window.innerWidth <= 720 ? 80 : 68;
-        const duration = Math.max(12000, (loopDistance / pixelsPerSecond) * 1000);
+        // A consistent pixel speed ensures all 14 images pass before the exact reset.
+        const pixelsPerSecond = window.innerWidth <= 720 ? 54 : 64;
+        const duration = Math.max(18000, (loopDistance / pixelsPerSecond) * 1000);
 
         marqueeAnimation = track.animate(
           [
@@ -3883,8 +3820,13 @@
       }
 
       function scheduleRebuild() {
+        const nextWidth = viewport.clientWidth;
+        // Mobile browser chrome often changes viewport height while scrolling.
+        // Ignore those events so the marquee is not repeatedly reset to image one.
+        if (Math.abs(nextWidth - measuredViewportWidth) < 8) return;
+        measuredViewportWidth = nextWidth;
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(buildLoop, 140);
+        resizeTimer = setTimeout(buildLoop, 180);
       }
 
       function pauseLoop() {
@@ -3910,16 +3852,19 @@
       });
 
       window.addEventListener("resize", scheduleRebuild, { passive: true });
-      window.addEventListener("orientationchange", scheduleRebuild, { passive: true });
-      window.addEventListener("load", scheduleRebuild, { once: true });
+      window.addEventListener("orientationchange", () => {
+        measuredViewportWidth = 0;
+        scheduleRebuild();
+      }, { passive: true });
 
-      if ("ResizeObserver" in window) {
-        const resizeObserver = new ResizeObserver(scheduleRebuild);
-        resizeObserver.observe(viewport);
-        resizeObserver.observe(sets[0]);
-      }
-
-      requestAnimationFrame(() => requestAnimationFrame(buildLoop));
+      const images = [...sourceSet.querySelectorAll("img")];
+      Promise.all(images.map((image) => {
+        if (image.complete) return image.decode?.().catch(() => {}) || Promise.resolve();
+        return new Promise((resolve) => {
+          image.addEventListener("load", resolve, { once: true });
+          image.addEventListener("error", resolve, { once: true });
+        });
+      })).then(() => requestAnimationFrame(() => requestAnimationFrame(buildLoop)));
     }
 
     initInstagramLoop();
