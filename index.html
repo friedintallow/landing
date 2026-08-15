@@ -2840,6 +2840,29 @@
 .product-highlights{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 28px;padding:0;list-style:none}.product-highlights li{padding:12px;border:1px solid var(--line);border-radius:7px;font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
 .modal-buy-row{display:grid;grid-template-columns:108px 1fr;gap:12px;margin-top:auto}.modal-quantity{display:grid;grid-template-columns:34px 1fr 34px;align-items:center;border:1px solid var(--line);border-radius:99px;text-align:center}.modal-quantity button{border:0;background:none;font-size:1.2rem;cursor:pointer}
 @media(max-width:760px){.product-backdrop{align-items:end;padding:0}.product-modal{grid-template-columns:1fr;width:100%;max-height:94vh;overflow-y:auto;border-radius:18px 18px 0 0}.product-gallery{height:46svh;min-height:320px;flex:0 0 auto}.product-details{padding:30px 24px 24px;overflow:visible}.product-details h2{font-size:3.2rem}}
+
+/* ================= FIRST-ORDER PROMO ================= */
+.promo-backdrop{position:fixed;inset:0;z-index:140;display:grid;place-items:center;padding:22px;background:rgba(29,21,16,.66);backdrop-filter:blur(9px);opacity:0;visibility:hidden;transition:opacity .28s ease,visibility .28s ease}
+.promo-backdrop.open{opacity:1;visibility:visible}
+.promo-modal{position:relative;width:min(510px,100%);padding:clamp(38px,7vw,64px);overflow:hidden;border:1px solid rgba(132,94,54,.2);border-radius:22px;background:linear-gradient(145deg,#fffaf1 0%,#f0dfc9 100%);box-shadow:0 32px 90px rgba(23,16,11,.38);text-align:center;transform:translateY(20px) scale(.975);transition:transform .34s cubic-bezier(.2,.8,.2,1)}
+.promo-backdrop.open .promo-modal{transform:none}
+.promo-modal::before{content:"";position:absolute;inset:-120px auto auto -110px;width:260px;height:260px;border:1px solid rgba(155,50,31,.13);border-radius:50%;box-shadow:0 0 0 34px rgba(155,50,31,.04),0 0 0 68px rgba(155,50,31,.025);pointer-events:none}
+.promo-close{position:absolute;z-index:2;top:14px;right:14px;display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:rgba(255,250,241,.82);color:var(--ink);font-size:1.45rem;line-height:1;cursor:pointer;transition:transform .2s ease,background .2s ease}
+.promo-close:hover{transform:rotate(6deg);background:#fffaf1}
+.promo-kicker{position:relative;margin:0 0 12px;color:var(--rust);font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.promo-modal h2{position:relative;margin:0;font-size:clamp(3.25rem,8vw,5.25rem);line-height:.88;letter-spacing:-.045em}
+.promo-copy{position:relative;max-width:350px;margin:20px auto 25px;color:#5f5145;line-height:1.6}
+.promo-form{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px}
+.promo-form input{min-width:0;height:52px;padding:0 17px;border:1px solid rgba(82,59,41,.28);border-radius:999px;background:rgba(255,255,255,.7);color:var(--ink);outline:none}
+.promo-form input:focus{border-color:var(--rust);box-shadow:0 0 0 3px rgba(155,50,31,.1)}
+.promo-form button{height:52px;padding:0 22px;border:0;border-radius:999px;background:var(--rust);color:#fff8ec;font-weight:800;cursor:pointer;transition:transform .2s ease,background .2s ease}
+.promo-form button:hover{transform:translateY(-2px);background:#7f2819}
+.promo-fine-print{margin:14px 0 0;color:#806f61;font-size:.72rem}
+.promo-success{position:relative;margin-top:24px;padding:20px;border:1px dashed rgba(155,50,31,.38);border-radius:14px;background:rgba(255,255,255,.48)}
+.promo-success p{margin:0 0 9px;color:#665447;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.promo-code{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:var(--ink);color:#fff8ec;font-size:1.05rem;font-weight:900;letter-spacing:.14em}
+@media(max-width:560px){.promo-backdrop{align-items:end;padding:12px}.promo-modal{padding:45px 23px 34px;border-radius:20px}.promo-form{grid-template-columns:1fr}.promo-form button{width:100%}}
+@media(prefers-reduced-motion:reduce){.promo-backdrop,.promo-modal,.promo-close,.promo-form button{transition:none}}
 </style>
 </head>
 <body>
@@ -3190,6 +3213,24 @@
 </a>
 </section>
 </main>
+<!-- FIRST-ORDER PROMO -->
+<div aria-hidden="true" class="promo-backdrop" id="promo-backdrop">
+<section aria-labelledby="promo-title" aria-modal="true" class="promo-modal" id="promo-modal" role="dialog" tabindex="-1">
+<button aria-label="Close offer" class="promo-close" type="button">×</button>
+<p class="promo-kicker">A crisp welcome</p>
+<h2 id="promo-title">Take 15% off</h2>
+<p class="promo-copy">Your first order deserves a little extra crunch. Enter your email and we’ll unlock your welcome code.</p>
+<form class="promo-form" id="promo-form">
+<input id="promo-email" name="email" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
+<button type="submit">Get my code</button>
+</form>
+<p class="promo-fine-print">First orders only. By signing up, you agree to receive occasional flavor updates.</p>
+<div class="promo-success" id="promo-success" hidden aria-live="polite">
+<p>Your 15% off code</p>
+<span class="promo-code">WELCOME15</span>
+</div>
+</section>
+</div>
 <!-- PRODUCT DETAIL MODAL -->
 <div aria-hidden="true" class="product-backdrop" id="product-backdrop">
 <section aria-labelledby="product-modal-title" aria-modal="true" class="product-modal" id="product-modal" role="dialog" tabindex="-1">
@@ -3286,6 +3327,10 @@
     const mobileMenuButton = document.querySelector(".mobile-menu-toggle");
     const mobileMenu = document.querySelector("#mobile-menu");
     const toast = document.querySelector("#toast");
+    const promoBackdrop = document.querySelector("#promo-backdrop");
+    const promoModal = document.querySelector("#promo-modal");
+    const promoForm = document.querySelector("#promo-form");
+    const promoSuccess = document.querySelector("#promo-success");
     const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
     const productCards = [...document.querySelectorAll(".product-card[data-product-id]")];
 
@@ -3700,6 +3745,7 @@
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
+        if (promoBackdrop.classList.contains("open")) closePromo();
         if (productBackdrop.classList.contains("open")) closeProductModal();
         if (cartBackdrop.classList.contains("open")) closeCart();
         if (!mobileMenu.hidden) closeMobileMenu();
@@ -3755,6 +3801,37 @@
       event.preventDefault();
       showToast("You are on the flavor list.");
     });
+
+    const promoStorageKey = "friedintallow-welcome-offer";
+
+    function closePromo() {
+      promoBackdrop.classList.remove("open");
+      promoBackdrop.setAttribute("aria-hidden", "true");
+      localStorage.setItem(promoStorageKey, "dismissed");
+      document.body.classList.remove("modal-open");
+    }
+
+    function openPromo() {
+      if (localStorage.getItem(promoStorageKey)) return;
+      promoBackdrop.classList.add("open");
+      promoBackdrop.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      setTimeout(() => document.querySelector("#promo-email")?.focus(), 280);
+    }
+
+    promoBackdrop.querySelector(".promo-close")?.addEventListener("click", closePromo);
+    promoBackdrop.addEventListener("click", (event) => {
+      if (event.target === promoBackdrop) closePromo();
+    });
+    promoForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!promoForm.reportValidity()) return;
+      promoForm.hidden = true;
+      promoSuccess.hidden = false;
+      localStorage.setItem(promoStorageKey, "claimed");
+    });
+
+    setTimeout(openPromo, 650);
 
     const checkoutStatus = new URLSearchParams(window.location.search).get("checkout");
     if (checkoutStatus === "success") {
