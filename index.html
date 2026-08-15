@@ -3344,32 +3344,32 @@
       "thai-chili": {
         description: "A bright, savory chili crunch with a slow-building warmth. Bold enough to wake up your snack break, balanced enough to keep reaching for another.",
         ingredients: "Birdseye Chili Powder, Sea salt , Wagyu Tallow",
-        images: ["assets/products/product-thai-chili-new.png", "thai-chili-2.png"]
+        images: ["thaichilimain.png?v=20260815-1", "thai-chili-2.png"]
       },
       "thai-lime": {
         description: "Tangy lime, aromatic herbs, and a clean salty finish. A fresh, zippy flavor made for people who like their crunch with a little lift.",
         ingredients: "Yuzu Powder, Thai Lime Powder, Sea Salt, Wagyu Tallow",
-        images: ["assets/products/product-thai-lime-new.png", "thai-lime-2.png"]
+        images: ["thailimemain.png?v=20260815-1", "thai-lime-2.png"]
       },
       "salted-egg": {
         description: "Rich, creamy, and deeply savory with that unmistakable salted egg finish. Comforting, craveable, and unapologetically full-flavored.",
         ingredients: "Salted Egg Powder, Sea Salt, Wagyu Tallow",
-        images: ["assets/products/product-salted-egg-new.png", "salted-egg-2.png"]
+        images: ["saltedeggmain.png?v=20260815-1", "salted-egg-2.png"]
       },
       "black-pepper": {
         description: "A peppery, savory classic with fragrant heat and a clean tallow-cooked crunch. Simple ingredients, serious character.",
         ingredients: "Black Pepper, Sea Salt, Wagyu Tallow",
-        images: ["assets/products/product-black-pepper-new.png", "black-pepper-2.png"]
+        images: ["blackpeppermain.png?v=20260815-1", "black-pepper-2.png"]
       },
       "truffle": {
         description: "Earthy truffle flavor layered over deeply golden kettle-cooked potatoes. Luxurious, aromatic, and made for slow snacking.",
         ingredients: "Black Truffle Dust, Sea Salt, Wagyu Tallow",
-        images: ["assets/products/product-truffle-new.png", "truffle-2.png"]
+        images: ["trufflemain.png?v=20260815-1", "truffle-2.png"]
       },
       "tom-yum": {
         description: "The full sweet-sour-spicy experience: citrus, herbs, and warming chili packed into every crisp, crunchy bite.",
         ingredients: "Tom Yum Powder, Lemon Grass, Sea Salt, Wagyu Tallow",
-        images: ["assets/products/product-tom-yum-new.png", "tom-yum-2.png"]
+        images: ["tomyummain.png?v=20260815-1", "tom-yum-2.png"]
       },
       "spicy-mayo": {
         description: "Creamy, tangy, and gently fiery. Familiar comfort with the deep crunch of a proper kettle chip.",
@@ -3786,7 +3786,7 @@
         subtotal: Number(subtotal().toFixed(2)),
         bagCount: itemCount(),
         singles: Object.entries(cartState).map(([id, quantity]) => ({
-          id, name: products[id].name, price: products[id].price, quantity
+          id, name: products[id].name, price: products[id].price, image: products[id].image, quantity
         })),
         bundles: bundleCartState.map((bundle) => ({
           ...bundle,
