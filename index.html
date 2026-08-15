@@ -2864,6 +2864,18 @@
 .promo-code{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:var(--ink);color:#fff8ec;font-size:1.05rem;font-weight:900;letter-spacing:.14em}
 @media(max-width:560px){.promo-backdrop{align-items:end;padding:12px}.promo-modal{padding:45px 23px 34px;border-radius:20px}.promo-form{grid-template-columns:1fr}.promo-form button{width:100%}}
 @media(prefers-reduced-motion:reduce){.promo-backdrop,.promo-modal,.promo-close,.promo-form button{transition:none}}
+
+/* ================= COMPACT LANDING BUNDLE ================= */
+.bundle{grid-template-columns:minmax(300px,.82fr) minmax(0,1.18fr);align-items:center;gap:clamp(30px,5vw,68px);padding-block:clamp(58px,6vw,84px)}
+.bundle-stage{height:clamp(390px,38vw,520px);min-height:0;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#eadcca;box-shadow:var(--shadow)}
+.bundle-stage img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;border-radius:0;filter:none}
+.bundle .plans{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:20px 0}
+.bundle .plan{display:grid;justify-items:start;gap:4px;padding:14px 16px}
+.bundle .bundle-builder{max-width:none;margin-top:16px;padding:16px}
+.bundle .bundle-flavors{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px;margin:12px 0}
+.bundle .bundle-flavor{min-width:0;padding:7px 0}
+@media(max-width:980px){.bundle{grid-template-columns:1fr}.bundle-stage{width:100%;height:min(58vw,440px)}}
+@media(max-width:720px){.bundle{padding-block:46px}.bundle-stage{height:clamp(280px,78vw,390px)}.bundle-stage img{width:100%}.bundle .plan{padding:12px 10px}.bundle .plan strong{font-size:1.1rem}.bundle .bundle-flavors{grid-template-columns:1fr}.bundle .bundle-builder{padding:14px}}
 </style>
 </head>
 <body>
@@ -3127,7 +3139,7 @@
 </section>
 <section class="section bundle" id="bundles">
 <div aria-label="FriedIntallow flavor bundle" class="bundle-stage reveal">
-<img alt="Thai Lime bag" src="tallowbox.png"/>
+<img alt="FriedIntallow custom bundle box" src="tallowboxlanding.png?v=20260815-1"/>
 </div>
 <div class="reveal">
 <p class="eyebrow">Mix it your way</p>
@@ -3607,7 +3619,7 @@
         ).join(" · ");
         return `
           <article class="cart-item bundle-cart-item" data-bundle-cart-id="${bundle.id}">
-            <img src="tallowbox.png" alt="${bundle.size}-bag FriedIntallow box" />
+            <img src="tallowboxlanding.png?v=20260815-1" alt="${bundle.size}-bag FriedIntallow box" />
             <div>
               <span class="bundle-cart-badge">Bundle pricing</span>
               <div class="cart-item-name">Build Your Box · ${bundle.size} Bags</div>
