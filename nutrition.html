@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#641d1c">
+  <title>Nutrition Facts | FriedIntallow</title>
+  <meta name="description" content="Nutrition facts, ingredients, and serving information for FriedIntallow Wagyu tallow chips.">
+  <link rel="icon" type="image/png" href="assets/friedintallow-logo-transparent.png">
+  <style>
+:root {
+  --accent: #641d1c;
+  --accent-2: #d34b2d;
+  --accent-soft: #ead0b8;
+  --ink: #221b16;
+  --paper: #f7efdf;
+  --cream: #ead9bf;
+  --line: rgba(34, 27, 22, .18);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+.announcement {
+  padding: 9px 20px;
+  background: var(--accent);
+  color: #fff8e9;
+  text-align: center;
+  font-size: .63rem;
+  font-weight: 850;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.site-header {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 82px;
+  padding: 10px clamp(18px, 4vw, 64px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(247, 239, 223, .94);
+  backdrop-filter: blur(16px);
+}
+.brand img { width: 172px; height: 52px; object-fit: contain; }
+.site-header nav { display: flex; gap: 34px; }
+.site-header nav a,
+.back-link,
+.crumb {
+  font-size: .67rem;
+  font-weight: 850;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.back-link { justify-self: end; }
+.back-link span { display: inline-block; margin-left: 5px; }
+
+.flavor-story {
+  display: grid;
+  grid-template-columns: minmax(400px, .83fr) minmax(520px, 1.17fr);
+  min-height: 760px;
+  overflow: hidden;
+  background: var(--accent);
+  color: #fff8e9;
+}
+.flavor-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(52px, 8vw, 126px) clamp(28px, 6vw, 96px);
+}
+.crumb {
+  align-self: flex-start;
+  margin-bottom: clamp(48px, 7vw, 96px);
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: rgba(255, 248, 233, .74);
+}
+.eyebrow {
+  margin: 0 0 15px;
+  font-size: .65rem;
+  font-weight: 850;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+.flavor-copy .eyebrow { color: var(--accent-soft); }
+h1, h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -.055em;
+}
+h1 { font-size: clamp(5rem, 10vw, 10rem); line-height: .76; }
+.flavor-description {
+  max-width: 520px;
+  margin: 34px 0;
+  color: rgba(255, 248, 233, .72);
+  font-size: .98rem;
+  line-height: 1.72;
+}
+.quick-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: auto 0 0;
+  padding-top: 27px;
+  border-top: 1px solid rgba(255, 255, 255, .24);
+}
+.quick-facts div { padding-right: 20px; }
+.quick-facts dt {
+  color: rgba(255, 248, 233, .55);
+  font-size: .59rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.quick-facts dd { margin: 8px 0 0; font-family: Georgia, serif; font-size: 1rem; }
+.product-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 760px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 45% 42%, rgba(255, 244, 220, .95) 0 10%, rgba(255, 232, 192, .6) 26%, transparent 59%),
+    linear-gradient(145deg, var(--accent-soft), #ddc3a0);
+}
+.product-stage::before {
+  content: "";
+  position: absolute;
+  inset: 6%;
+  z-index: -1;
+  border: 1px solid rgba(53, 37, 24, .17);
+  border-radius: 50%;
+}
+.product-stage img {
+  width: min(76%, 700px);
+  max-height: 720px;
+  object-fit: contain;
+  filter: drop-shadow(0 38px 36px rgba(44, 24, 14, .25));
+  mix-blend-mode: multiply;
+}
+.stage-word {
+  position: absolute;
+  top: 9%;
+  left: -2%;
+  z-index: -1;
+  color: rgba(57, 34, 23, .075);
+  font-family: Georgia, serif;
+  font-size: clamp(8rem, 17vw, 17rem);
+  letter-spacing: -.08em;
+  line-height: 1;
+}
+.stage-index {
+  position: absolute;
+  right: 30px;
+  bottom: 28px;
+  font-size: .65rem;
+  font-weight: 850;
+  letter-spacing: .16em;
+}
+
+.facts-section {
+  display: grid;
+  grid-template-columns: minmax(480px, .9fr) minmax(370px, 1.1fr);
+  gap: clamp(52px, 9vw, 150px);
+  padding: clamp(74px, 10vw, 145px) max(24px, calc((100vw - 1240px) / 2));
+  background: #efe4d1;
+}
+.draft-note {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 22px;
+  align-items: start;
+  margin-bottom: -20px;
+  padding: 18px 21px;
+  border: 1px solid rgba(117, 68, 19, .3);
+  border-radius: 9px;
+  background: #f5e4bf;
+  color: #5d3a17;
+}
+.draft-note span {
+  font-size: .63rem;
+  font-weight: 900;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.draft-note p { margin: 0; font-size: .76rem; line-height: 1.5; }
+
+.nutrition-label {
+  width: 100%;
+  max-width: 560px;
+  padding: 8px 10px 10px;
+  border: 3px solid #000;
+  background: #fff;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 18px 22px 0 var(--accent-2);
+}
+.nf-title {
+  margin: 0;
+  font-family: Arial Black, Arial, Helvetica, sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  font-weight: 950;
+  letter-spacing: -.07em;
+  line-height: .94;
+}
+.nf-serving-count { margin: 2px 0 3px; font-size: .88rem; }
+.nf-serving-size {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 0 5px;
+  font-size: .94rem;
+  font-weight: 800;
+}
+.nf-heavy { height: 13px; border: 0; background: #000; }
+.nf-medium { height: 6px; border: 0; background: #000; }
+.nf-column-head,
+.nf-row,
+.nf-calories {
+  display: grid;
+  grid-template-columns: minmax(130px, 1.8fr) minmax(52px, .85fr) 40px minmax(63px, .95fr) 40px;
+  align-items: end;
+  column-gap: 5px;
+}
+.nf-column-head { padding: 3px 0; font-size: .65rem; line-height: 1.05; text-align: right; }
+.nf-column-head span:first-child { text-align: left; }
+.nf-column-head b { display: block; font-size: .75rem; }
+.nf-amount { margin: 0; font-size: .65rem; font-weight: 800; }
+.nf-calories { padding: 2px 0 5px; }
+.nf-calories strong:first-child { font-size: 1.45rem; }
+.nf-calories strong:not(:first-child) { font-size: 2rem; line-height: .95; text-align: right; }
+.nf-dv-head {
+  padding: 2px 0 3px;
+  border-top: 1px solid #000;
+  font-size: .65rem;
+  font-weight: 800;
+  text-align: right;
+}
+.nf-row { min-height: 23px; padding: 3px 0 2px; border-top: 1px solid #000; font-size: .76rem; }
+.nf-row > :not(:first-child) { text-align: right; }
+.nf-row .name strong { font-weight: 900; }
+.nf-row.indent .name { padding-left: 14px; }
+.nf-row.double-indent .name { padding-left: 28px; }
+.nf-row.no-dv { grid-template-columns: minmax(130px, 1.8fr) minmax(97px, 1fr) minmax(108px, 1fr); }
+.nf-micros { border-top: 6px solid #000; }
+.nf-micros .nf-row:first-child { border-top: 0; }
+.nf-footnote { margin: 5px 0 0; font-size: .62rem; line-height: 1.22; }
+.sample-stamp {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 8px -10px -10px;
+  padding: 8px 10px;
+  background: #111;
+  color: #fff;
+  font-size: .57rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.ingredient-card { align-self: center; max-width: 510px; }
+.ingredient-card .eyebrow { color: var(--accent); }
+.ingredient-card h2 { font-size: clamp(3.8rem, 6.2vw, 6.4rem); line-height: .86; }
+.ingredients { margin: 36px 0 20px; font-family: Georgia, serif; font-size: 1.3rem; line-height: 1.58; }
+.ingredient-note { max-width: 430px; color: #75685c; font-size: .73rem; line-height: 1.6; }
+
+.flavor-switcher {
+  padding: clamp(75px, 9vw, 125px) max(22px, calc((100vw - 1240px) / 2));
+  background: var(--paper);
+}
+.flavor-switcher > .eyebrow { color: var(--accent); }
+.flavor-switcher h2 { max-width: 760px; font-size: clamp(3.5rem, 6vw, 6rem); line-height: .9; }
+.flavor-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 44px; }
+.flavor-link {
+  position: relative;
+  min-height: 152px;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f5ecdc;
+  transition: transform .2s, border-color .2s;
+}
+.flavor-link:hover { transform: translateY(-4px); border-color: var(--ink); }
+.flavor-link[aria-current="page"] { color: #fff8e9; background: var(--accent); }
+.flavor-link small { display: block; margin-bottom: 32px; font-size: .58rem; font-weight: 850; letter-spacing: .14em; opacity: .63; }
+.flavor-link strong { display: block; max-width: 130px; font-family: Georgia, serif; font-size: 1.45rem; font-weight: 400; line-height: .95; }
+.flavor-link span { position: absolute; right: 15px; bottom: 14px; font-size: 1.25rem; }
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 34px clamp(20px, 5vw, 70px);
+  background: #201914;
+  color: #d8ccbd;
+  font-size: .7rem;
+}
+
+@media (max-width: 960px) {
+  .site-header { grid-template-columns: 1fr auto; }
+  .site-header nav { display: none; }
+  .flavor-story { grid-template-columns: 1fr; }
+  .flavor-copy { min-height: 610px; }
+  .product-stage { min-height: 640px; }
+  .facts-section { grid-template-columns: 1fr; }
+  .nutrition-label { justify-self: center; }
+  .ingredient-card { max-width: 660px; padding-top: 22px; }
+  .flavor-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .announcement { font-size: .53rem; }
+  .site-header { min-height: 68px; padding: 7px 15px; }
+  .brand img { width: 135px; height: 44px; }
+  .back-link { font-size: .57rem; }
+  .back-link span { display: none; }
+  .flavor-copy { min-height: 555px; padding: 44px 22px; }
+  .crumb { margin-bottom: 60px; }
+  h1 { font-size: clamp(4.8rem, 27vw, 7.2rem); }
+  .flavor-description { margin: 28px 0; font-size: .9rem; }
+  .quick-facts { gap: 11px; }
+  .quick-facts div { padding: 0; }
+  .quick-facts dd { font-size: .88rem; }
+  .product-stage { min-height: 490px; }
+  .product-stage img { width: 95%; }
+  .facts-section { gap: 62px; padding: 65px 11px; }
+  .draft-note { grid-template-columns: 1fr; margin-inline: 7px; }
+  .nutrition-label { box-shadow: 8px 10px 0 var(--accent-2); }
+  .nf-title { font-size: 2.7rem; }
+  .nf-column-head,
+  .nf-row,
+  .nf-calories { grid-template-columns: minmax(100px, 1.65fr) minmax(42px, .8fr) 35px minmax(48px, .9fr) 35px; column-gap: 3px; }
+  .nf-row.no-dv { grid-template-columns: minmax(100px, 1.65fr) minmax(77px, 1fr) minmax(83px, 1fr); }
+  .nf-row { font-size: .67rem; }
+  .nf-calories strong:not(:first-child) { font-size: 1.65rem; }
+  .ingredient-card { padding: 12px 10px 0; }
+  .ingredient-card h2 { font-size: 4.4rem; }
+  .flavor-switcher { padding: 70px 16px; }
+  .flavor-list { gap: 8px; }
+  .flavor-link { min-height: 132px; padding: 14px; }
+  .flavor-link strong { font-size: 1.15rem; }
+  footer { flex-direction: column; }
+}
+
+</style>
+</head>
+<body data-flavor="thai-chili">
+  <div class="announcement">Kettle cooked in Wagyu tallow · No seed oils</div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="FriedIntallow home">
+      <img src="assets/friedintallow-logo-transparent.png" alt="FriedIntallow">
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="shop.html">Shop</a>
+      <a href="story.html">Our story</a>
+    </nav>
+    <a class="back-link" href="product.html?flavor=thai-chili">Back to flavor <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main class="nutrition-page">
+    <section class="flavor-story" aria-labelledby="flavor-title">
+      <div class="flavor-copy">
+        <a class="crumb" href="shop.html">All flavors</a>
+        <p class="eyebrow">Flavor 01 · Nutrition &amp; ingredients</p>
+        <h1 id="flavor-title">Thai<br>Chili</h1>
+        <p class="flavor-description" id="flavor-description"></p>
+        <dl class="quick-facts">
+          <div><dt>Bag size</dt><dd>2.5 oz</dd></div>
+          <div><dt>Cooking fat</dt><dd>Wagyu tallow</dd></div>
+          <div><dt>Seed oils</dt><dd>None</dd></div>
+        </dl>
+      </div>
+      <div class="product-stage" aria-hidden="true">
+        <span class="stage-word">THAI</span>
+        <img id="flavor-image" src="thai-chili-2.png" alt="">
+        <span class="stage-index">01 / 08</span>
+      </div>
+    </section>
+
+    <section class="facts-section" aria-label="Thai Chili nutrition details">
+      <div class="draft-note" role="note">
+        <span>Draft data</span>
+        <p>The layout follows the current U.S. dual-column format for this 2.5 oz bag. Replace the sample amounts with lab-verified product data before publishing.</p>
+      </div>
+      <div id="nutrition-facts"></div>
+      <div class="ingredient-card">
+        <p class="eyebrow">What’s inside</p>
+        <h2>Short list.<br>Big flavor.</h2>
+        <p class="ingredients" id="ingredients"></p>
+        <p class="ingredient-note">Ingredient and allergen statements should be checked against final supplier specifications before sale.</p>
+      </div>
+    </section>
+
+    <section class="flavor-switcher" aria-labelledby="switcher-title">
+      <p class="eyebrow">Compare the collection</p>
+      <h2 id="switcher-title">Choose another flavor.</h2>
+      <div class="flavor-list" id="flavor-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 FriedIntallow</span>
+    <span>Nutrition details for every bold, tallow-cooked flavor.</span>
+  </footer>
+  <script>
+document.body.dataset.flavor = new URLSearchParams(location.search).get("flavor") || "thai-chili";
+const flavors = {
+  "thai-chili": {
+    name: "Thai Chili",
+    number: "01",
+    image: "thai-chili-2.png",
+    description: "Bright birdseye chili warmth, sea salt, and a deep golden crunch cooked entirely in Wagyu tallow.",
+    ingredients: "Potatoes, Wagyu beef tallow, birdseye chili powder, sea salt.",
+    colors: ["#641d1c", "#d34b2d", "#e7caa9"]
+  },
+  "thai-lime": {
+    name: "Thai Lime",
+    number: "02",
+    image: "thai-lime-2.png",
+    description: "A zippy blend of Thai lime and yuzu with a clean, savory finish and a sturdy kettle-cooked bite.",
+    ingredients: "Potatoes, Wagyu beef tallow, Thai lime powder, yuzu powder, sea salt.",
+    colors: ["#173b2b", "#96a72b", "#d7d3a8"]
+  },
+  "salted-egg": {
+    name: "Salted Egg",
+    number: "03",
+    image: "salted-egg-2.png",
+    description: "Rich, creamy, and deeply savory with the unmistakable comfort of salted egg seasoning.",
+    ingredients: "Potatoes, Wagyu beef tallow, salted egg powder, sea salt.",
+    colors: ["#81420d", "#e49b19", "#ebcf9f"]
+  },
+  "black-pepper": {
+    name: "Black Pepper",
+    number: "04",
+    image: "black-pepper-2.png",
+    description: "Fragrant black pepper and sea salt meet the rich, traditional crunch of Wagyu tallow.",
+    ingredients: "Potatoes, Wagyu beef tallow, black pepper, sea salt.",
+    colors: ["#1d1d1b", "#a7743a", "#d5c29f"]
+  },
+  "truffle": {
+    name: "Truffle",
+    number: "05",
+    image: "truffle-2.png",
+    description: "Earthy black truffle seasoning layered over deeply golden potatoes for a slow, luxurious snack.",
+    ingredients: "Potatoes, Wagyu beef tallow, black truffle dust, sea salt.",
+    colors: ["#30233d", "#8b5b8f", "#d4c2ca"]
+  },
+  "tom-yum": {
+    name: "Tom Yum",
+    number: "06",
+    image: "tom-yum-2.png",
+    description: "Tangy citrus, aromatic lemongrass, and warming chili bring the full sweet-sour-spicy experience.",
+    ingredients: "Potatoes, Wagyu beef tallow, tom yum seasoning, lemongrass, sea salt.",
+    colors: ["#9d3d12", "#d7681d", "#e5c49c"]
+  },
+  "spicy-mayo": {
+    name: "Spicy Mayo",
+    number: "07",
+    image: "spicy-mayo-2.png",
+    description: "Creamy tang and a gentle peppery heat over a deeply crisp, tallow-cooked potato chip.",
+    ingredients: "Potatoes, Wagyu beef tallow, spicy mayo seasoning, Cajun seasoning, sea salt.",
+    colors: ["#b74719", "#ec7026", "#efc69c"]
+  },
+  "garlic": {
+    name: "Garlic",
+    number: "08",
+    image: "garlic-2.png",
+    description: "Roasted garlic flavor with a savory, buttery finish and a clean Wagyu-tallow crunch.",
+    ingredients: "Potatoes, Wagyu beef tallow, garlic powder, garlic sea salt.",
+    colors: ["#57523b", "#a3935d", "#e5dcc8"]
+  }
+};
+
+// Visual placeholders only. Replace every amount with a verified laboratory or
+// database analysis for the final commercial recipe before these pages go live.
+const sampleNutrition = {
+  servings: "About 2.5 servings per container",
+  servingSize: "1 oz (28g)",
+  calories: [150, 380],
+  rows: [
+    ["Total Fat", "9g", "12%", "23g", "29%", "bold"],
+    ["Saturated Fat", "4g", "20%", "10g", "50%", "indent"],
+    ["Trans Fat", "0g", "", "0g", "", "indent italic"],
+    ["Cholesterol", "10mg", "3%", "25mg", "8%", "bold"],
+    ["Sodium", "180mg", "8%", "450mg", "20%", "bold"],
+    ["Total Carbohydrate", "15g", "5%", "38g", "14%", "bold"],
+    ["Dietary Fiber", "1g", "4%", "3g", "11%", "indent"],
+    ["Total Sugars", "0g", "", "0g", "", "indent"],
+    ["Includes Added Sugars", "0g", "0%", "0g", "0%", "double-indent"],
+    ["Protein", "2g", "", "5g", "", "bold"]
+  ],
+  micros: [
+    ["Vitamin D", "0mcg", "0%", "0mcg", "0%"],
+    ["Calcium", "10mg", "0%", "30mg", "2%"],
+    ["Iron", "0.5mg", "2%", "1.3mg", "8%"],
+    ["Potassium", "350mg", "8%", "880mg", "20%"]
+  ]
+};
+
+const slug = document.body.dataset.flavor;
+const flavor = flavors[slug] || flavors["thai-chili"];
+const root = document.documentElement;
+root.style.setProperty("--accent", flavor.colors[0]);
+root.style.setProperty("--accent-2", flavor.colors[1]);
+root.style.setProperty("--accent-soft", flavor.colors[2]);
+
+document.querySelector("#flavor-description").textContent = flavor.description;
+document.querySelector("#ingredients").textContent = flavor.ingredients;
+document.querySelector("#flavor-image").src = flavor.image;
+document.querySelector(".stage-index").textContent = `${flavor.number} / 08`;
+
+function formatName(name, classes) {
+  if (name === "Trans Fat") return "<em>Trans</em> Fat";
+  if (name === "Includes Added Sugars") return "Includes Added Sugars";
+  return classes.includes("bold") ? `<strong>${name}</strong>` : name;
+}
+
+function nutrientRow(row) {
+  const [name, servingAmount, servingDv, bagAmount, bagDv, classes = ""] = row;
+  return `<div class="nf-row ${classes}">
+    <span class="name">${formatName(name, classes)}</span>
+    <span>${servingAmount}</span><strong>${servingDv}</strong>
+    <span>${bagAmount}</span><strong>${bagDv}</strong>
+  </div>`;
+}
+
+const label = document.querySelector("#nutrition-facts");
+label.innerHTML = `<article class="nutrition-label" aria-label="Sample dual-column Nutrition Facts for ${flavor.name}">
+  <h2 class="nf-title">Nutrition Facts</h2>
+  <p class="nf-serving-count">${sampleNutrition.servings}</p>
+  <div class="nf-serving-size"><span>Serving size</span><span>${sampleNutrition.servingSize}</span></div>
+  <hr class="nf-heavy">
+  <div class="nf-column-head"><span></span><span><b>Per serving</b></span><span></span><span><b>Per container</b></span><span></span></div>
+  <p class="nf-amount">Amount per serving</p>
+  <div class="nf-calories"><strong>Calories</strong><strong>${sampleNutrition.calories[0]}</strong><span></span><strong>${sampleNutrition.calories[1]}</strong><span></span></div>
+  <div class="nf-dv-head">% Daily Value*</div>
+  ${sampleNutrition.rows.map(nutrientRow).join("")}
+  <div class="nf-micros">${sampleNutrition.micros.map(nutrientRow).join("")}</div>
+  <p class="nf-footnote">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</p>
+  <div class="sample-stamp"><span>Sample values</span><span>Not for packaging</span></div>
+</article>`;
+
+document.querySelector("#flavor-list").innerHTML = Object.entries(flavors).map(([id, item]) => `
+  <a class="flavor-link" href="nutrition.html?flavor=${id}" ${id === slug ? 'aria-current="page"' : ""}>
+    <small>${item.number} / 08</small>
+    <strong>${item.name}</strong>
+    <span aria-hidden="true">↗</span>
+  </a>`).join("");
+
+document.title = `${flavor.name} Nutrition Facts | FriedIntallow`;
+document.querySelector('meta[name="description"]').content = `Nutrition facts, ingredients, and serving information for FriedIntallow ${flavor.name} Wagyu tallow chips.`;
+document.querySelector('meta[name="theme-color"]').content = flavor.colors[0];
+document.querySelector("#flavor-title").innerHTML = flavor.name.split(" ").join("<br>");
+document.querySelector(".flavor-copy .eyebrow").textContent = `Flavor ${flavor.number} · Nutrition & ingredients`;
+document.querySelector(".stage-word").textContent = flavor.name.split(" ")[0].toUpperCase();
+document.querySelector(".back-link").href = `product.html?flavor=${slug}`;
+document.querySelector(".facts-section").setAttribute("aria-label", `${flavor.name} nutrition details`);
+
+</script>
+</body>
+</html>
