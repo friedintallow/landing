@@ -418,15 +418,6 @@ footer {
   <script>
 document.body.dataset.flavor = new URLSearchParams(location.search).get("flavor") || "thai-chili";
 const flavors = {
-  "just-tallow": {
-    name: "Just Tallow",
-    number: "09",
-    image: "just-tallow-front.png",
-    description: "Two simple ingredients. Potatoes cooked in Wagyu beef tallow for a rich, crisp crunch with nothing extra.",
-    ingredients: "Potatoes, Wagyu Beef Tallow.",
-    colors: ["#715321", "#b39457", "#e9dcc0"],
-    nutritionPending: true
-  },
   "thai-chili": {
     name: "Thai Chili",
     number: "01",
@@ -490,6 +481,15 @@ const flavors = {
     description: "Roasted garlic flavor with a savory, buttery finish and a clean Wagyu-tallow crunch.",
     ingredients: "Potatoes, Wagyu beef tallow, garlic powder, garlic sea salt.",
     colors: ["#57523b", "#a3935d", "#e5dcc8"]
+  },
+  "just-tallow": {
+    name: "Just Tallow",
+    number: "09",
+    image: "just-tallow-hero.png",
+    description: "Two simple ingredients. Potatoes cooked in Wagyu beef tallow for a rich, crisp crunch with nothing extra.",
+    ingredients: "Potatoes, Wagyu Beef Tallow.",
+    colors: ["#715321", "#b39457", "#e9dcc0"],
+    nutritionPending: true
   }
 };
 
