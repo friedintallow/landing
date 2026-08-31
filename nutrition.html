@@ -418,6 +418,15 @@ footer {
   <script>
 document.body.dataset.flavor = new URLSearchParams(location.search).get("flavor") || "thai-chili";
 const flavors = {
+  "just-tallow": {
+    name: "Just Tallow",
+    number: "09",
+    image: "just-tallow-front.png",
+    description: "Two simple ingredients. Potatoes cooked in Wagyu beef tallow for a rich, crisp crunch with nothing extra.",
+    ingredients: "Potatoes, Wagyu Beef Tallow.",
+    colors: ["#715321", "#b39457", "#e9dcc0"],
+    nutritionPending: true
+  },
   "thai-chili": {
     name: "Thai Chili",
     number: "01",
@@ -520,7 +529,7 @@ root.style.setProperty("--accent-soft", flavor.colors[2]);
 document.querySelector("#flavor-description").textContent = flavor.description;
 document.querySelector("#ingredients").textContent = flavor.ingredients;
 document.querySelector("#flavor-image").src = flavor.image;
-document.querySelector(".stage-index").textContent = `${flavor.number} / 08`;
+document.querySelector(".stage-index").textContent = `${flavor.number} / ${String(Object.keys(flavors).length).padStart(2, "0")}`;
 
 function formatName(name, classes) {
   if (name === "Trans Fat") return "<em>Trans</em> Fat";
@@ -537,25 +546,39 @@ function nutrientRow(row) {
   </div>`;
 }
 
+const nutrition = flavor.nutritionPending ? {
+  servings: "Serving information pending verification",
+  servingSize: "Pending",
+  calories: ["—", "—"],
+  rows: sampleNutrition.rows.map(([name, , , , , classes]) => [name, "—", "—", "—", "—", classes]),
+  micros: sampleNutrition.micros.map(([name]) => [name, "—", "—", "—", "—"])
+} : sampleNutrition;
+if (flavor.nutritionPending) {
+  document.querySelector(".draft-note span").textContent = "Values pending";
+  document.querySelector(".draft-note p").textContent = "Verified nutrition amounts are not yet available for Just Tallow. Dashes indicate unavailable values, not zero. Ingredients and bag size are taken from the supplied packaging.";
+  document.querySelector(".ingredient-card h2").innerHTML = "Two ingredients.<br>Nothing extra.";
+  document.querySelector(".ingredient-note").textContent = "Made in a facility that may process milk, egg, soy, and wheat.";
+  document.querySelector(".quick-facts dd").textContent = "2.5 oz (71g)";
+}
 const label = document.querySelector("#nutrition-facts");
-label.innerHTML = `<article class="nutrition-label" aria-label="Sample dual-column Nutrition Facts for ${flavor.name}">
+label.innerHTML = `<article class="nutrition-label" aria-label="${flavor.nutritionPending ? "Pending" : "Sample dual-column"} Nutrition Facts for ${flavor.name}">
   <h2 class="nf-title">Nutrition Facts</h2>
-  <p class="nf-serving-count">${sampleNutrition.servings}</p>
-  <div class="nf-serving-size"><span>Serving size</span><span>${sampleNutrition.servingSize}</span></div>
+  <p class="nf-serving-count">${nutrition.servings}</p>
+  <div class="nf-serving-size"><span>Serving size</span><span>${nutrition.servingSize}</span></div>
   <hr class="nf-heavy">
   <div class="nf-column-head"><span></span><span><b>Per serving</b></span><span></span><span><b>Per container</b></span><span></span></div>
   <p class="nf-amount">Amount per serving</p>
-  <div class="nf-calories"><strong>Calories</strong><strong>${sampleNutrition.calories[0]}</strong><span></span><strong>${sampleNutrition.calories[1]}</strong><span></span></div>
+  <div class="nf-calories"><strong>Calories</strong><strong>${nutrition.calories[0]}</strong><span></span><strong>${nutrition.calories[1]}</strong><span></span></div>
   <div class="nf-dv-head">% Daily Value*</div>
-  ${sampleNutrition.rows.map(nutrientRow).join("")}
-  <div class="nf-micros">${sampleNutrition.micros.map(nutrientRow).join("")}</div>
+  ${nutrition.rows.map(nutrientRow).join("")}
+  <div class="nf-micros">${nutrition.micros.map(nutrientRow).join("")}</div>
   <p class="nf-footnote">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</p>
-  <div class="sample-stamp"><span>Sample values</span><span>Not for packaging</span></div>
+  <div class="sample-stamp"><span>${flavor.nutritionPending ? "Values pending" : "Sample values"}</span><span>Not for packaging</span></div>
 </article>`;
 
-document.querySelector("#flavor-list").innerHTML = Object.entries(flavors).map(([id, item]) => `
+document.querySelector("#flavor-list").innerHTML = Object.entries(flavors).sort(([,a],[,b])=>Number(a.number)-Number(b.number)).map(([id, item]) => `
   <a class="flavor-link" href="nutrition.html?flavor=${id}" ${id === slug ? 'aria-current="page"' : ""}>
-    <small>${item.number} / 08</small>
+    <small>${item.number} / ${String(Object.keys(flavors).length).padStart(2, "0")}</small>
     <strong>${item.name}</strong>
     <span aria-hidden="true">↗</span>
   </a>`).join("");
