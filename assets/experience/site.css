@@ -1,0 +1,133 @@
+/* Shared FriedIntallow identity and progressive motion. */
+:root {
+  --fit-red: #a32924;
+  --fit-yellow: #f8e9a5;
+  --fit-paper: #fff9e9;
+  --fit-ink: #38221e;
+  --fit-ease: cubic-bezier(.16, 1, .3, 1);
+}
+html { scroll-padding-top: 105px; }
+body { background-color: var(--fit-paper); }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #b64422; outline-offset: 5px; }
+::selection { background: #a32924; color: #fff9e9; }
+.nav { border-bottom: 1px solid rgba(83,39,25,.15); }
+.nav-links a { transition: color .2s ease; }
+.nav-links a:hover { color: var(--fit-red); }
+.nav-links a[aria-current="page"] { text-decoration: underline; text-underline-offset: 7px; }
+.pill, .add, .shop-link, .cta a, .cart-button, .checkout-button, .bundle-add {
+  transition: transform .25s var(--fit-ease), box-shadow .25s ease, background .2s ease;
+}
+@media (hover:hover) {
+  .pill:hover, .add:hover, .shop-link:hover, .cta a:hover, .cart-button:hover, .checkout-button:hover, .bundle-add:not(:disabled):hover {
+    transform: translateY(-3px) rotate(-1deg);
+    box-shadow: 3px 5px 0 rgba(93,43,24,.22);
+  }
+  .product-image img, .related-card img, .chapter-media img { transition: transform .7s var(--fit-ease); }
+  .product:hover .product-image img, .related-card:hover img { transform: scale(1.055) rotate(-2deg); }
+  .chapter-media:hover img { transform: scale(1.035); }
+}
+.chapter-media { overflow: hidden; }
+.fit-enter { opacity: 1; }
+html.fit-motion .fit-enter {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .75s ease, transform .85s var(--fit-ease);
+  transition-delay: var(--enter-delay, 0ms);
+}
+html.fit-motion .fit-enter.is-in { opacity: 1; transform: none; }
+html[data-motion="paused"] *, html[data-motion="paused"] *::before, html[data-motion="paused"] *::after { animation-play-state: paused !important; }
+html[data-motion="paused"] { scroll-behavior: auto; }
+.fit-progress { position: fixed; z-index: 160; top: 0; left: 0; width: 100%; height: 3px; background: var(--fit-red); transform: scaleX(0); transform-origin: left; pointer-events: none; }
+body:not(.fit-home) .hero h1, body:not(.fit-home) .section-head h2, body:not(.fit-home) .bundle-copy h2,
+body:not(.fit-home) .cta h2, body:not(.fit-home) .closing h2, body:not(.fit-home) .statement h2 {
+  font-family: "Arial Rounded MT Bold", "Arial Black", "Helvetica Neue", sans-serif;
+  font-weight: 900; letter-spacing: -.065em; line-height: .94;
+}
+body:not(.fit-home) .hero { background-color: var(--fit-yellow); }
+body:not(.fit-home) .hero-copy .eyebrow { font-weight: 800; }
+body:not(.fit-home) .hero-copy h1 { color: var(--fit-red); }
+body:not(.fit-home) .hero-copy .pill.solid, body:not(.fit-home) .shop-link, body:not(.fit-home) .cta a {
+  border-color: var(--fit-red); background: var(--fit-red); color: var(--fit-paper);
+}
+body:not(.fit-home) .product { border-radius: 20px; border-color: var(--card-accent,#a32924); background: var(--card-fill,#fff9e9); }
+
+
+body:not(.fit-home) .product .add { background: var(--card-accent,var(--fit-red)); border-color: var(--card-accent,var(--fit-red)); }
+body:not(.fit-home) .hero-media img { border-radius: 0 0 0 70px; }
+body:not(.fit-home) .hero-copy { background: var(--fit-yellow); }
+/* Story photography needs light text over its dark overlay. */
+body:not(.fit-home) .hero:has(> img) .hero-copy { background: transparent; }
+body:not(.fit-home) .hero:has(> img) h1 { color: #fff9e9; }
+@media(max-width:700px) {
+  body:not(.fit-home) .hero-media img { border-radius: 0 0 40px 40px; }
+}
+.nav .logo, .topbar .logo { width: 220px; height: 52px; object-fit: cover; object-position: 53% center; filter: none; }
+body:not(.fit-home) .shop-section { padding: 48px 4.5vw 58px; background: #fff9e9; }
+body:not(.fit-home) .shop-section .section-head { margin-bottom: 28px; }
+body:not(.fit-home) .shop-section .products { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+body:not(.fit-home) .shop-section .product-image { aspect-ratio: 1; }
+body:not(.fit-home) .hero:has(.hero-media) { min-height: 510px; }
+body:not(.fit-home) .hero:has(.hero-media) .hero-copy { padding: 55px 5vw; }
+body:not(.fit-home) .hero:has(.hero-media) h1 { font-size: clamp(60px,7vw,104px); }
+body:not(.fit-home) .hero:has(.hero-media) .hero-media { min-height: 510px; max-height: 600px; }
+body:not(.fit-home) .hero:has(.hero-media) .hero-media img { object-fit: cover; }
+@media(max-width:900px) {
+  body:not(.fit-home) .shop-section .products { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+  body:not(.fit-home) .hero:has(.hero-media) .hero-media { min-height: 320px; height: 48vw; max-height: 440px; }
+  .nav .logo, .topbar .logo { width: 180px; height: 46px; }
+}
+@media(max-width:520px) {
+  body:not(.fit-home) .shop-section { padding: 35px 14px 40px; }
+  body:not(.fit-home) .hero:has(.hero-media) .hero-copy { padding: 40px 22px; }
+  body:not(.fit-home) .hero:has(.hero-media) h1 { font-size: 64px; }
+  body:not(.fit-home) .hero:has(.hero-media) .hero-media { min-height: 280px; height: 280px; }
+  body:not(.fit-home) .shop-section .products { gap: 10px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  html.fit-motion .fit-enter { opacity: 1; transform: none; }
+}
+
+/* One flavor, one color, across every product grid. */
+[data-flavor="thai-chili"] { --card-fill:#f6cec1; --card-accent:#982b24; --card-tag:"SWEET HEAT"; }
+[data-flavor="thai-lime"] { --card-fill:#dfebb6; --card-accent:#36532b; --card-tag:"CITRUS KICK"; }
+[data-flavor="black-pepper"] { --card-fill:#e2dfd6; --card-accent:#443b34; --card-tag:"THE BOLD CLASSIC"; }
+[data-flavor="truffle"] { --card-fill:#e5d5ee; --card-accent:#613d75; --card-tag:"A LITTLE EXTRA"; }
+[data-flavor="tom-yum"] { --card-fill:#f6d1a5; --card-accent:#9c3d1e; --card-tag:"TANGY & AROMATIC"; }
+[data-flavor="just-tallow"] { --card-fill:#f4e9c6; --card-accent:#775c28; --card-tag:"JUST THE GOOD STUFF"; }
+.product[data-flavor] .product-image { background:transparent; }
+.product[data-flavor] .product-image img { mix-blend-mode:multiply; border-radius:12px; }
+.product[data-flavor] h3 { color:var(--card-accent); font-family:"Arial Black",Arial,sans-serif; font-size:22px; font-weight:900; letter-spacing:-.045em; }
+.product[data-flavor] .product-price { color:var(--card-accent); }
+@media(max-width:520px){.product[data-flavor] h3{font-size:18px}}
+/* Let photography, color, and readable type do the work. */
+body:not(.fit-home) .product{padding:16px;border:0;border-radius:14px;box-shadow:none}
+.product[data-flavor] .product-copy{font-size:14px;line-height:1.5;min-height:42px}
+.product[data-flavor] .product-price{font-size:15px}
+.product[data-flavor] .add{font-size:12px;min-height:47px;letter-spacing:.035em}
+.product[data-flavor] .nutrition-link{font-size:11px;letter-spacing:.025em}
+body:not(.fit-home) .bundle-section{background:#a32924;color:#fff9e9}
+body:not(.fit-home) .bundle-section .bundle-media{background:#f8e9a5;padding:40px}
+body:not(.fit-home) .bundle-section .bundle-media::before{display:none}
+body:not(.fit-home) .bundle-section .bundle-media img{width:100%;max-width:100%;border-radius:40% 40% 12px 12px;mix-blend-mode:multiply;filter:none}
+body:not(.fit-home) .bundle-section .bundle-builder{border:0;border-radius:0}
+body:not(.fit-home) .bundle-section .bundle-head{padding-inline:0;border-bottom:1px solid #fff9e950}
+body:not(.fit-home) .bundle-section .bundle-head strong{font-size:16px}
+body:not(.fit-home) .bundle-section .bundle-progress{font-size:14px;color:#fff9e9}
+body:not(.fit-home) .bundle-section .flavor span{font-size:14px}
+body:not(.fit-home) .bundle-section .bundle-copy > p:not(.eyebrow){font-size:16px;color:#fff9e9}
+body:not(.fit-home) .bundle-section .plan span{font-size:15px}
+body:not(.fit-home) .bundle-section .bundle-add{font-size:13px;letter-spacing:0}
+body:not(.fit-home) .bundle-section .reset{font-size:13px;color:#fff9e9}
+.nav-links{font-size:12px;letter-spacing:.035em}
+body:not(.fit-home) .announcement{font-size:11px;letter-spacing:.04em}
+body:not(.fit-home) .hero-copy .eyebrow{display:none}
+body:not(.fit-home) .hero-copy p:not(.eyebrow){font-size:17px}
+@media(max-width:520px){
+ body:not(.fit-home) .product{padding:10px}
+ .product[data-flavor] .product-copy{font-size:13px;min-height:60px}
+ .product[data-flavor] .product-price{font-size:13px}
+ .product[data-flavor] .add{font-size:11px;letter-spacing:0}
+}

@@ -1952,7 +1952,7 @@
       }
     }
 
-  
+
 
     /* Visual-first revision */
     .hero {
@@ -2877,8 +2877,14 @@
 @media(max-width:980px){.bundle{grid-template-columns:1fr}.bundle-stage{width:100%;height:min(58vw,440px)}}
 @media(max-width:720px){.bundle{padding-block:46px}.bundle-stage{height:clamp(280px,78vw,390px)}.bundle-stage img{width:100%;transform:scale(1.12)}.bundle .plan{padding:12px 10px}.bundle .plan strong{font-size:1.1rem}.bundle .bundle-flavors{grid-template-columns:1fr}.bundle .bundle-builder{padding:14px}}
 </style>
+<meta name="description" content="Big flavor. Proper crunch. Discover potato chips kettle cooked in Wagyu tallow, without seed oils. Shop six flavors or build your own box.">
+<link rel="preload" as="image" href="thaichilimain.png">
+  <link rel="stylesheet" href="assets/experience/site.css">
+  <script src="assets/experience/availability.js"></script>
+  <script src="assets/experience/site.js" defer></script>
+  <link rel="stylesheet" href="assets/experience/home.css">
 </head>
-<body>
+<body class="fit-home">
 <nav aria-label="Primary navigation" class="nav">
 <a aria-label="friedIntallow home" href="#top">
 <img alt="FriedIntallow" class="logo" src="assets/friedintallow-logo-transparent.png"/>
@@ -2891,8 +2897,89 @@
 </nav>
 <div class="mobile-menu" hidden="" id="mobile-menu"><a href="shop.html">Shop</a><a href="story.html">Our Story</a><a href="community.html">Community</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a></div>
 <main id="top">
-<section aria-labelledby="hero-title" class="section hero hero-centered"><div class="hero-center-wrap reveal"><p class="eyebrow">We love chips too with</p><h1 id="hero-title">No Seed Oils!</h1><p class="lede">Kettle cooked in Wagyu tallow.</p><div class="hero-actions"><a class="button" href="shop.html">Shop the flavors</a></div></div></section><section aria-labelledby="instagram-title" class="instagram-section" id="instagram">
-<div class="instagram-head reveal"><div><p class="eyebrow">From the feed</p><h2 id="instagram-title">FriedIntallow, everywhere.</h2></div><a class="instagram-handle" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">@friedintallow</a></div>
+<div class="fit-announcement">A better kind of snack break. <span>Always cooked in Wagyu tallow.</span></div>
+<section aria-labelledby="hero-title" class="home-hero">
+  <div class="hero-editorial">
+    <h1 id="hero-title">Big chip<br><em>energy.</em><br><span class="hero-punchline">Zero seed oils.</span></h1>
+    <p class="hero-description">We love chips too. So we made them the old-school way: kettle cooked in Wagyu tallow, boldly seasoned, and ready to disappear by the handful.</p>
+    <div class="hero-cta-row"><a class="fit-button" href="#shop">Find your flavor <span aria-hidden="true">↗</span></a><a class="fit-text-link" href="shop.html#bundles">Build a box <span aria-hidden="true">→</span></a></div>
+  </div>
+  <div class="hero-art" aria-label="Explore our signature flavors">
+    <span class="hero-orbit" aria-hidden="true"></span>
+    <figure class="flavor-photo flavor-photo-back"><img src="thailimemain.png" alt="Thai Lime chips" width="1254" height="1254"></figure>
+    <figure class="flavor-photo flavor-photo-front"><img id="hero-flavor-image" src="thaichilimain.png" alt="Thai Chili Wagyu tallow chips" width="1254" height="1254" fetchpriority="high"><figcaption><span id="hero-flavor-name">Thai Chili</span></figcaption></figure>
+    <div class="hero-seal" aria-label="Kettle cooked, zero seed oils"><strong>NO<br>SEED<br>OILS.</strong></div>
+    <div class="hero-flavor-picker" role="group" aria-label="Featured flavor"><button type="button" class="flavor-choice active" data-hero-flavor="thai-chili" aria-pressed="true"><span style="--swatch:#8f2c21"></span>Thai Chili</button><button type="button" class="flavor-choice" data-hero-flavor="thai-lime" aria-pressed="false"><span style="--swatch:#475b37"></span>Thai Lime</button><button type="button" class="flavor-choice" data-hero-flavor="truffle" aria-pressed="false"><span style="--swatch:#60436a"></span>Truffle</button></div>
+  </div>
+
+</section>
+<div class="crunch-ribbon" aria-label="Wagyu tallow. No seed oils. All crunch."><div class="crunch-track"><span>Wagyu tallow <b>✳</b> No seed oils <b>✳</b> All crunch <b>✳</b> Big flavor <b>✳</b> Small batch <b>✳</b>&nbsp;</span><span aria-hidden="true">Wagyu tallow <b>✳</b> No seed oils <b>✳</b> All crunch <b>✳</b> Big flavor <b>✳</b> Small batch <b>✳</b>&nbsp;</span></div></div>
+<section class="section short flavors" id="shop">
+<div class="reveal">
+<div class="flavor-heading"><h2>PICK YOUR<br><em>SNACK CRUSH.</em></h2><p>From a little heat to a lot of savory.<br>There’s a bag with your name on it.</p></div>
+</div>
+<div class="product-row stagger">
+<article class="product-card" data-product-id="thai-chili" data-flavor="thai-chili" data-product-image="thaichilimain.png?v=20260815-1" data-product-name="Thai Chili" data-product-price="7.49">
+<img alt="Thai Chili FriedIntallow chips" src="thaichilimain.png?v=20260815-1"/>
+<h3>Thai Chili</h3>
+<p>$7.49</p>
+<button class="add-to-cart" type="button">Add to cart</button>
+</article>
+<article class="product-card" data-product-id="thai-lime" data-flavor="thai-lime" data-product-image="thailimemain.png?v=20260815-1" data-product-name="Thai Lime" data-product-price="7.49">
+<img alt="Thai Lime FriedIntallow chips" src="thailimemain.png?v=20260815-1"/>
+<h3>Thai Lime</h3>
+<p>$7.49</p>
+<button class="add-to-cart" type="button">Add to cart</button>
+</article>
+<article class="product-card" data-product-id="black-pepper" data-flavor="black-pepper" data-product-image="blackpeppermain.png?v=20260815-1" data-product-name="Black Pepper" data-product-price="7.99">
+<img alt="Black Pepper FriedIntallow chips" src="blackpeppermain.png?v=20260815-1"/>
+<h3>Black Pepper</h3>
+<p>$7.99</p>
+<button class="add-to-cart" type="button">Add to cart</button>
+</article>
+<article class="product-card" data-product-id="truffle" data-flavor="truffle" data-product-image="trufflemain.png?v=20260815-1" data-product-name="Truffle" data-product-price="8.99">
+<img alt="Truffle FriedIntallow chips" src="trufflemain.png?v=20260815-1"/>
+<h3>Truffle</h3>
+<p>$8.99</p>
+<button class="add-to-cart" type="button">Add to cart</button>
+</article>
+<article class="product-card" data-product-id="tom-yum" data-flavor="tom-yum" data-product-image="tomyummain.png?v=20260815-1" data-product-name="Tom Yum" data-product-price="7.99">
+<img alt="Tom Yum FriedIntallow chips" src="tomyummain.png?v=20260815-1"/>
+<h3>Tom Yum</h3>
+<p>$7.99</p>
+<button class="add-to-cart" type="button">Add to cart</button>
+</article>
+<article class="product-card" data-product-id="just-tallow" data-flavor="just-tallow" data-product-image="just-tallow-hero.png" data-product-name="Just Tallow" data-product-price="4.99">
+<img alt="Just Tallow plain Wagyu tallow chips" src="just-tallow-hero.png"/>
+<h3>Just Tallow</h3>
+<p>$4.99</p>
+<button class="add-to-cart" type="button">Add to cart</button>
+</article>
+</div>
+<a class="button" href="shop.html#bundles">See our bundles</a>
+</section>
+<section id="ingredients" class="open-benefits" aria-label="The good stuff"><div><h3>No seed oils.</h3><p>Just potatoes, Wagyu tallow, and a whole lot of flavor.</p></div><div><h3>Small batch.</h3><p>Kettle cooked for the kind of crunch you come back for.</p></div><div><h3>Big snack energy.</h3><p>Six flavors. Plenty of personality. Find your good bag.</p></div></section>
+<section class="section bundle" id="bundles">
+<div aria-label="FriedIntallow flavor bundle" class="bundle-stage reveal">
+<img alt="Thai Chili and Thai Lime flavor inspiration" src="thaichilimain.png?v=20260815-1"/>
+</div>
+<div class="reveal">
+
+<h2>YOUR BOX.<br><em>YOUR RULES.</em></h2><p class="bundle-intro">A little of this. A lot of that. Mix your favorite flavors into one seriously good delivery.</p>
+<div aria-label="Choose a bundle size" class="plans" role="group">
+<button aria-pressed="true" class="plan active" data-bundle-price="15" data-bundle-size="3" type="button"><strong>3 Bags</strong><span>$15</span></button>
+<button aria-pressed="false" class="plan" data-bundle-price="25" data-bundle-size="6" type="button"><strong>6 Bags</strong><span>$25</span></button>
+<button aria-pressed="false" class="plan" data-bundle-price="35" data-bundle-size="12" type="button"><strong>12 Bags</strong><span>$35</span></button>
+</div>
+<div class="bundle-builder" id="bundle-builder">
+<div class="bundle-builder-header"><strong>Choose your flavors</strong><p aria-live="polite" class="bundle-progress" id="bundle-progress">0 of 3 bags selected</p></div>
+<div class="bundle-flavors" id="bundle-flavors"></div>
+<div class="bundle-builder-footer"><button class="bundle-reset" id="bundle-reset" type="button">Reset</button><button class="button bundle-add" disabled id="bundle-add" type="button">Add 3-bag box · $15</button></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="instagram-title" class="instagram-section" id="instagram">
+<div class="instagram-head reveal"><div><h2 id="instagram-title">FriedIntallow, everywhere.</h2></div><a class="instagram-handle" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">@friedintallow</a></div>
 <div aria-label="Instagram photo gallery" class="instagram-viewport">
 <div class="instagram-track">
 
@@ -2963,21 +3050,7 @@
       />
     </a>
 
-    <a
-      class="instagram-card"
-      href="https://instagram.com/friedintallow"
-      rel="noopener"
-      target="_blank"
-    >
-      <img
-        src="insta5.png"
-        alt="FriedIntallow Instagram post 5"
-        width="1080"
-        height="1350"
-        loading="eager"
-        decoding="async"
-      />
-    </a>
+
 
     <a
       class="instagram-card"
@@ -3027,9 +3100,7 @@
       />
     </a>
 
-    <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav1.png?v=20260808-2" alt="FriedIntallow Instagram post 9" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
+
 
     <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
       <img src="instav2.png?v=20260808-2" alt="FriedIntallow Instagram post 10" width="1080" height="1350" loading="lazy" decoding="async" />
@@ -3039,17 +3110,13 @@
       <img src="instav3.png?v=20260808-2" alt="FriedIntallow Instagram post 11" width="1080" height="1350" loading="lazy" decoding="async" />
     </a>
 
-    <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav4.png?v=20260808-2" alt="FriedIntallow Instagram post 12" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
+
 
     <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
       <img src="instav5.png?v=20260808-2" alt="FriedIntallow Instagram post 13" width="1080" height="1350" loading="lazy" decoding="async" />
     </a>
 
-    <a class="instagram-card" href="https://instagram.com/friedintallow" rel="noopener" target="_blank">
-      <img src="instav6.png?v=20260808-2" alt="FriedIntallow Instagram post 14" width="1080" height="1350" loading="lazy" decoding="async" />
-    </a>
+
 
   </div>
 
@@ -3057,114 +3124,9 @@
 </div>
 </div>
 </section>
-<section class="section short flavors" id="shop">
-<div class="reveal">
-<div class="section-kicker">Pick your flavor.</div>
-</div>
-<div class="product-row stagger">
-<article class="product-card" data-product-id="thai-chili" data-product-image="thaichilimain.png?v=20260815-1" data-product-name="Thai Chili" data-product-price="7.49">
-<img alt="Thai Chili FriedIntallow chips" src="thaichilimain.png?v=20260815-1"/>
-<h3>Thai Chili</h3>
-<p>$7.49</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-<article class="product-card" data-product-id="thai-lime" data-product-image="thailimemain.png?v=20260815-1" data-product-name="Thai Lime" data-product-price="7.49">
-<img alt="Thai Lime FriedIntallow chips" src="thailimemain.png?v=20260815-1"/>
-<h3>Thai Lime</h3>
-<p>$7.49</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-<article class="product-card" data-product-id="salted-egg" data-product-image="saltedeggmain.png?v=20260815-1" data-product-name="Salted Egg" data-product-price="7.99">
-<img alt="Salted Egg FriedIntallow chips" src="saltedeggmain.png?v=20260815-1"/>
-<h3>Salted Egg</h3>
-<p>$7.99</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-<article class="product-card" data-product-id="black-pepper" data-product-image="blackpeppermain.png?v=20260815-1" data-product-name="Black Pepper" data-product-price="7.99">
-<img alt="Black Pepper FriedIntallow chips" src="blackpeppermain.png?v=20260815-1"/>
-<h3>Black Pepper</h3>
-<p>$7.99</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-<article class="product-card" data-product-id="truffle" data-product-image="trufflemain.png?v=20260815-1" data-product-name="Truffle" data-product-price="8.99">
-<img alt="Truffle FriedIntallow chips" src="trufflemain.png?v=20260815-1"/>
-<h3>Truffle</h3>
-<p>$8.99</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-<article class="product-card" data-product-id="tom-yum" data-product-image="tomyummain.png?v=20260815-1" data-product-name="Tom Yum" data-product-price="7.99">
-<img alt="Tom Yum FriedIntallow chips" src="tomyummain.png?v=20260815-1"/>
-<h3>Tom Yum</h3>
-<p>$7.99</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-<article class="product-card" data-product-id="spicy-mayo" data-product-image="spicymayomain.png?v=20260815-2" data-product-name="Spicy Mayo" data-product-price="8.49">
-<img alt="Spicy Mayo FriedIntallow chips" src="spicymayomain.png?v=20260815-2"/>
-<h3>Spicy Mayo</h3>
-<p>$8.49</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-<article class="product-card" data-product-id="garlic" data-product-image="garlic-grid-style.png" data-product-name="Garlic" data-product-price="7.99">
-<img alt="Garlic FriedIntallow chips" src="garlic-grid-style.png"/>
-<h3>Garlic</h3>
-<p>$7.99</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-<article class="product-card" data-product-id="just-tallow" data-product-image="just-tallow-hero.png" data-product-name="Just Tallow" data-product-price="4.99">
-<img alt="Just Tallow plain Wagyu tallow chips" src="just-tallow-hero.png"/>
-<h3>Just Tallow</h3>
-<p>$4.99</p>
-<button class="add-to-cart" type="button">Add to cart</button>
-</article>
-</div>
-<a class="button" href="shop.html#bundles">See our bundles</a>
-</section>
-<div aria-label="Product benefits" class="benefit-bar">
-<div class="benefit">
-<div class="mini">CI</div>
-<div><strong>Clean Ingredients</strong><span>No seed oils or artificial additives.</span></div>
-</div>
-<div class="benefit">
-<div class="mini">KC</div>
-<div><strong>Better Cooking</strong><span>Kettle cooked in Wagyu tallow.</span></div>
-</div>
-<div class="benefit">
-<div class="mini">MM</div>
-<div><strong>Mindfully Made</strong><span>Crafted in small batches for quality.</span></div>
-</div>
-<div class="benefit">
-<div class="mini">GF</div>
-<div><strong>Better For You</strong><span>Guilt free and made with real food.</span></div>
-</div>
-</div>
-<section aria-label="Product essentials" class="proof-strip">
-<div class="proof-item"><span>01</span><strong>Potatoes</strong></div>
-<div class="proof-item"><span>02</span><strong>Wagyu Tallow</strong></div>
-<div class="proof-item"><span>03</span><strong>Bold Seasoning</strong></div>
-<div class="proof-item"><span>04</span><strong>Serious Crunch</strong></div>
-</section>
-<section class="section bundle" id="bundles">
-<div aria-label="FriedIntallow flavor bundle" class="bundle-stage reveal">
-<img alt="FriedIntallow custom bundle box" src="tallowboxlanding.png?v=20260815-1"/>
-</div>
-<div class="reveal">
-<p class="eyebrow">Mix it your way</p>
-<h2>Build your box.</h2>
-<div aria-label="Choose a bundle size" class="plans" role="group">
-<button aria-pressed="true" class="plan active" data-bundle-price="15" data-bundle-size="3" type="button"><strong>3 Bags</strong><span>$15</span></button>
-<button aria-pressed="false" class="plan" data-bundle-price="25" data-bundle-size="6" type="button"><strong>6 Bags</strong><span>$25</span></button>
-<button aria-pressed="false" class="plan" data-bundle-price="35" data-bundle-size="12" type="button"><strong>12 Bags</strong><span>$35</span></button>
-</div>
-<div class="bundle-builder" id="bundle-builder">
-<div class="bundle-builder-header"><strong>Choose your flavors</strong><p aria-live="polite" class="bundle-progress" id="bundle-progress">0 of 3 bags selected</p></div>
-<div class="bundle-flavors" id="bundle-flavors"></div>
-<div class="bundle-builder-footer"><button class="bundle-reset" id="bundle-reset" type="button">Reset</button><button class="button bundle-add" disabled id="bundle-add" type="button">Add 3-bag box · $15</button></div>
-</div>
-</div>
-</section>
 <section class="section short reviews" id="reviews">
 <div class="reveal">
-<div class="section-kicker">Loved at first crunch.</div>
+<h2>LOVE AT<br><em>FIRST CRUNCH.</em></h2>
 </div>
 <div class="review-card-grid stagger">
 <article class="review-card">
@@ -3199,7 +3161,7 @@
 </section>
 <section class="section faq" id="faq">
 <div class="reveal">
-<p class="eyebrow">FAQ</p>
+
 <h2>Quick answers.</h2>
 </div>
 <div class="reveal">
@@ -3209,7 +3171,7 @@
 </details>
 <details>
 <summary>What flavors are available?</summary>
-<p>Thai Chili, Thai Lime, Salted Egg, Black Pepper, Truffle, Tom Yum, Spicy Mayo, Garlic, and Just Tallow — our plain two-ingredient chips.</p>
+<p>Thai Chili, Thai Lime, Black Pepper, Truffle, Tom Yum, and Just Tallow — our plain two-ingredient chips.</p>
 </details>
 <details>
 <summary>Is this healthy?</summary>
@@ -3221,17 +3183,9 @@
 </details>
 </div>
 </section>
-<section class="final-cta" aria-label="Shop FriedInTallow flavors">
-<img
-  class="final-cta-image"
-  src="friedintallowcta.png"
-  alt="Thai Chilli, Thai Lime, Salted Egg, and Truffle Wagyu tallow chips"
-/>
-<a class="final-cta-link" href="shop.html" aria-label="Shop FriedInTallow flavors">
-  <span>Shop FriedInTallow</span>
-</a>
-</section>
+<section class="fit-closing"><div><h2>GOOD CHIPS.<br><em>GREAT CALL.</em></h2><p>Your next favorite snack is one crunch away.</p><a class="fit-button" href="shop.html">Get your crunch on <span aria-hidden="true">↗</span></a></div><img src="thaichilimain.png" alt="Thai Chili Wagyu tallow chips" loading="lazy" width="1254" height="1254"></section>
 </main>
+<button class="welcome-trigger" type="button" aria-controls="promo-modal">First crunch? Take 15% off <span aria-hidden="true">↗</span></button>
 <!-- FIRST-ORDER PROMO -->
 <div aria-hidden="true" class="promo-backdrop" id="promo-backdrop">
 <section aria-labelledby="promo-title" aria-modal="true" class="promo-modal" id="promo-modal" role="dialog" tabindex="-1">
@@ -3370,11 +3324,7 @@
         ingredients: "Yuzu Powder, Thai Lime Powder, Sea Salt, Wagyu Tallow",
         images: ["thailimemain.png?v=20260815-1", "thai-lime-2.png"]
       },
-      "salted-egg": {
-        description: "Rich, creamy, and deeply savory with that unmistakable salted egg finish. Comforting, craveable, and unapologetically full-flavored.",
-        ingredients: "Salted Egg Powder, Sea Salt, Wagyu Tallow",
-        images: ["saltedeggmain.png?v=20260815-1", "salted-egg-2.png"]
-      },
+
       "black-pepper": {
         description: "A peppery, savory classic with fragrant heat and a clean tallow-cooked crunch. Simple ingredients, serious character.",
         ingredients: "Black Pepper, Sea Salt, Wagyu Tallow",
@@ -3390,16 +3340,8 @@
         ingredients: "Tom Yum Powder, Lemon Grass, Sea Salt, Wagyu Tallow",
         images: ["tomyummain.png?v=20260815-1", "tom-yum-2.png"]
       },
-      "spicy-mayo": {
-        description: "Creamy, tangy, and gently fiery. Familiar comfort with the deep crunch of a proper kettle chip.",
-        ingredients: "Dried Spicy Mayo Powder, Cajun, Sea Salt, Wagyu Tallow",
-        images: ["spicymayomain.png?v=20260815-2", "spicy-mayo-2.png"]
-      },
-      "garlic": {
-        description: "Roasted garlic flavor with a savory, buttery finish. Big aroma, clean ingredients, and a satisfying Wagyu-tallow crunch.",
-        ingredients: "Garlic Powder, Garlic Sea Salt, Wagyu Tallow",
-        images: ["garlicmain.png", "garlic-2.png"]
-      },
+
+
       "just-tallow": {
         description: "Two simple ingredients. Potatoes cooked in Wagyu beef tallow for a rich, crisp crunch with nothing extra.",
         ingredients: "Potatoes, Wagyu Beef Tallow.",
@@ -3631,7 +3573,7 @@
         ).join(" · ");
         return `
           <article class="cart-item bundle-cart-item" data-bundle-cart-id="${bundle.id}">
-            <img src="tallowboxlanding.png?v=20260815-1" alt="${bundle.size}-bag FriedIntallow box" />
+            <img src="thaichilimain.png?v=20260815-1" alt="${bundle.size}-bag FriedIntallow box" />
             <div>
               <span class="bundle-cart-badge">Bundle pricing</span>
               <div class="cart-item-name">Build Your Box · ${bundle.size} Bags</div>
@@ -3706,7 +3648,7 @@
       card.setAttribute("role", "button");
       card.addEventListener("click", () => openProductModal(card.dataset.productId));
       card.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openProductModal(card.dataset.productId); }
+        if (event.target === card && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); openProductModal(card.dataset.productId); }
       });
       card.querySelector(".add-to-cart").addEventListener("click", (event) => {
         event.stopPropagation();
@@ -3856,7 +3798,7 @@
       localStorage.setItem(promoStorageKey, "claimed");
     });
 
-    setTimeout(openPromo, 650);
+    document.querySelector(".welcome-trigger")?.addEventListener("click", () => { localStorage.removeItem(promoStorageKey); openPromo(); });
 
     const checkoutStatus = new URLSearchParams(window.location.search).get("checkout");
     if (checkoutStatus === "success") {
@@ -3889,6 +3831,7 @@
       track.appendChild(duplicate);
 
       let marqueeAnimation = null;
+      document.addEventListener("fit:motion", event => { if (event.detail.paused) marqueeAnimation?.pause(); else if (!pausedByUser && !document.hidden) marqueeAnimation?.play(); });
       let resizeTimer = null;
       let pausedByUser = false;
       let measuredViewportWidth = viewport.clientWidth;
@@ -3920,7 +3863,7 @@
           }
         );
 
-        if (pausedByUser || document.hidden) marqueeAnimation.pause();
+        if (pausedByUser || document.hidden || document.documentElement.dataset.motion === "paused" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) marqueeAnimation.pause();
       }
 
       function scheduleRebuild() {
@@ -3940,7 +3883,7 @@
 
       function resumeLoop() {
         pausedByUser = false;
-        if (!document.hidden) marqueeAnimation?.play();
+        if (!document.hidden && document.documentElement.dataset.motion !== "paused" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) marqueeAnimation?.play();
       }
 
       // Touch interactions can emit pointer/focus events without a matching
@@ -3953,7 +3896,7 @@
 
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) marqueeAnimation?.pause();
-        else if (!pausedByUser) marqueeAnimation?.play();
+        else if (!pausedByUser && document.documentElement.dataset.motion !== "paused" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) marqueeAnimation?.play();
       });
 
       window.addEventListener("resize", scheduleRebuild, { passive: true });
@@ -3967,7 +3910,7 @@
       requestAnimationFrame(() => requestAnimationFrame(buildLoop));
 
       window.addEventListener("pageshow", () => {
-        if (!pausedByUser && !document.hidden) marqueeAnimation?.play();
+        if (!pausedByUser && !document.hidden && document.documentElement.dataset.motion !== "paused" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) marqueeAnimation?.play();
       });
     }
 

@@ -356,6 +356,9 @@ footer {
 }
 
 </style>
+  <link rel="stylesheet" href="assets/experience/site.css">
+  <script src="assets/experience/availability.js"></script>
+  <script src="assets/experience/site.js" defer></script>
 </head>
 <body data-flavor="thai-chili">
   <div class="announcement">Kettle cooked in Wagyu tallow · No seed oils</div>
@@ -434,14 +437,7 @@ const flavors = {
     ingredients: "Potatoes, Wagyu beef tallow, Thai lime powder, yuzu powder, sea salt.",
     colors: ["#173b2b", "#96a72b", "#d7d3a8"]
   },
-  "salted-egg": {
-    name: "Salted Egg",
-    number: "03",
-    image: "salted-egg-2.png",
-    description: "Rich, creamy, and deeply savory with the unmistakable comfort of salted egg seasoning.",
-    ingredients: "Potatoes, Wagyu beef tallow, salted egg powder, sea salt.",
-    colors: ["#81420d", "#e49b19", "#ebcf9f"]
-  },
+
   "black-pepper": {
     name: "Black Pepper",
     number: "04",
@@ -466,22 +462,8 @@ const flavors = {
     ingredients: "Potatoes, Wagyu beef tallow, tom yum seasoning, lemongrass, sea salt.",
     colors: ["#9d3d12", "#d7681d", "#e5c49c"]
   },
-  "spicy-mayo": {
-    name: "Spicy Mayo",
-    number: "07",
-    image: "spicy-mayo-2.png",
-    description: "Creamy tang and a gentle peppery heat over a deeply crisp, tallow-cooked potato chip.",
-    ingredients: "Potatoes, Wagyu beef tallow, spicy mayo seasoning, Cajun seasoning, sea salt.",
-    colors: ["#b74719", "#ec7026", "#efc69c"]
-  },
-  "garlic": {
-    name: "Garlic",
-    number: "08",
-    image: "garlic-2.png",
-    description: "Roasted garlic flavor with a savory, buttery finish and a clean Wagyu-tallow crunch.",
-    ingredients: "Potatoes, Wagyu beef tallow, garlic powder, garlic sea salt.",
-    colors: ["#57523b", "#a3935d", "#e5dcc8"]
-  },
+
+
   "just-tallow": {
     name: "Just Tallow",
     number: "09",
@@ -519,7 +501,8 @@ const sampleNutrition = {
   ]
 };
 
-const slug = document.body.dataset.flavor;
+const slug = flavors[document.body.dataset.flavor] ? document.body.dataset.flavor : "thai-chili";
+Object.values(flavors).forEach((item, index) => { item.number = String(index + 1).padStart(2, "0"); });
 const flavor = flavors[slug] || flavors["thai-chili"];
 const root = document.documentElement;
 root.style.setProperty("--accent", flavor.colors[0]);
