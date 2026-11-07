@@ -108,6 +108,7 @@
 .fit-closing .fit-button { color: #a32924; background: #f8e9a5; border-color: #f8e9a5; box-shadow: 0 4px 0 #6b211b; }
 .fit-closing > img { width: 100%; height: auto; mix-blend-mode: screen; transform: rotate(7deg); border-radius: 45%; }
 .fit-home > footer { background: #56251f; }
+.fit-home > footer .footer-logo { filter: invert(1); mix-blend-mode: screen; opacity: 1; }
 .welcome-trigger { position: fixed; left: 16px; bottom: 16px; z-index: 48; min-height: 40px; padding: 9px 15px; background: #a32924; color: #fff9e9; border: 1px solid #fff9e970; border-radius: 99px; font: 750 10px/1.3 system-ui,sans-serif; cursor: pointer; box-shadow: 0 4px 14px #38221e20; transition: transform .2s; }
 .welcome-trigger:hover { transform: translateY(-3px); }
 .welcome-trigger span { margin-left: 10px; }
