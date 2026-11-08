@@ -1,0 +1,140 @@
+/* A grounded product photograph, clear product facts, and one shopping action. */
+.brand-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 735px;
+  padding-top: 118px;
+  overflow: hidden;
+  background: #fff5dd;
+}
+.brand-hero-copy {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  padding: 45px 20px 50px clamp(30px, 5.5vw, 90px);
+}
+.brand-hero h1 {
+  max-width: 660px;
+  margin: 0;
+  color: #972b23;
+  font: 400 clamp(61px, 5.95vw, 91px)/1.04 "Permanent Marker", "Arial Black", cursive;
+  font-synthesis: none;
+  letter-spacing: -.045em;
+  text-transform: none;
+}
+.brand-hero h1 em { color: #254331; font-style: normal; }
+.brand-hero-description {
+  max-width: 475px;
+  margin: 25px 0 29px;
+  color: #543e30;
+  font-size: 18px;
+  line-height: 1.65;
+}
+.brand-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; }
+.brand-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 60px;
+  padding: 15px 27px;
+  border: 2px solid #972b23;
+  border-radius: 999px;
+  background: #972b23;
+  box-shadow: 0 4px 0 #61221d;
+  color: #fff9e9;
+  font: 800 17px/1.2 system-ui, sans-serif;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.brand-hero-cta span { font-size: 25px; transition: transform .2s ease; }
+.brand-hero-cta:hover { background: #b03729; transform: translateY(-3px); box-shadow: 0 7px 0 #61221d; }
+.brand-hero-cta:hover span { transform: translate(2px,-2px); }
+.brand-hero-cta:active { transform: translateY(2px); box-shadow: 0 2px 0 #61221d; }
+.brand-hero-story { padding: 10px 0; border-bottom: 1px solid #684f37; color: #543e30; font-size: 15px; font-weight: 650; }
+.brand-hero-story span { margin-left: 8px; }
+.brand-hero-price { margin: 20px 0 0; color: #6e513b; font-size: 16px; line-height: 1.5; }
+.brand-hero-price strong { color: #972b23; font-weight: 750; }
+.brand-hero-proof {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  max-width: 545px;
+  margin-top: 28px;
+  padding-top: 23px;
+  border-top: 1px solid #6b4b2829;
+  color: #254331;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 650;
+}
+.brand-hero-proof > span { display: inline-flex; align-items: center; gap: 6px; }
+.brand-hero-proof svg { width: 18px; height: 18px; flex: none; }
+.brand-hero-media { position: relative; min-width: 0; min-height: 615px; height: 100%; margin: 0; overflow: hidden; }
+.brand-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 87% center; }
+.brand-hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#fff5dd 0%,#fff5dd00 20%); pointer-events: none; }
+.brand-shipping {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 24px 5.5vw;
+  background: #254331;
+  color: #fff5dd;
+}
+.brand-shipping > span { font: 400 24px/1.15 "Permanent Marker", cursive; letter-spacing: -.025em; }
+.brand-shipping p { margin: 0; font-size: 16px; line-height: 1.5; }
+.brand-shipping a { font-size: 16px; font-weight: 700; text-underline-offset: 6px; text-decoration: underline; }
+.brand-shipping a span { margin-left: 15px; text-decoration: none; }
+html.fit-motion .brand-hero-copy { animation: brand-hero-enter .65s var(--fit-ease) both; }
+html.fit-motion .brand-hero-media img { animation: brand-photo-enter .8s ease-out both; }
+@keyframes brand-hero-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes brand-photo-enter { from { opacity: 0; } to { opacity: 1; } }
+@media(min-width:1600px) {
+  .brand-hero-copy { padding-left: max(90px,calc((100vw - 1450px)/2)); }
+  .brand-hero { grid-template-columns: 1.04fr .96fr; }
+}
+@media(max-width:1100px) and (min-width:901px) {
+  .brand-hero { min-height: 695px; grid-template-columns: 1.06fr .94fr; }
+  .brand-hero-copy { padding-left: 4vw; padding-block: 40px; }
+  .brand-hero h1 { font-size: clamp(53px,6.15vw,68px); }
+  .brand-hero-description { font-size: 17px; }
+  .brand-hero-media { min-height: 575px; }
+  .brand-hero-cta { gap: 25px; padding-inline: 22px; }
+  .brand-hero-actions { gap: 17px; }
+  .brand-hero-proof { gap: 10px 15px; font-size: 14px; }
+  .brand-shipping > span { font-size: 21px; }
+  .brand-shipping p,.brand-shipping a { font-size: 14px; }
+}
+@media(max-width:900px) {
+  .fit-home .nav { grid-template-columns: 1fr auto auto; gap: 16px; }
+  .fit-home .nav-links { display: none; }
+  .fit-home .mobile-menu-toggle { display: flex; }
+  .brand-hero { grid-template-columns: 1fr; padding-top: 108px; min-height: 0; }
+  .brand-hero-copy { padding: 28px 6vw 24px; }
+  .brand-hero h1 { max-width: 570px; font-size: clamp(47px,11.6vw,75px); line-height: 1.04; }
+  .brand-hero-description { max-width: 480px; margin: 22px 0 25px; font-size: 16px; line-height: 1.6; }
+  .brand-hero-actions { gap: 18px; }
+  .brand-hero-cta { min-height: 55px; padding: 14px 22px; gap: 24px; font-size: 16px; }
+  .brand-hero-story { font-size: 14px; }
+  .brand-hero-price { margin-top: 18px; font-size: 15px; }
+  .brand-hero-proof { margin-top: 21px; padding-top: 18px; gap: 10px 14px; font-size: 13px; }
+  .brand-hero-proof svg { width: 16px; height: 16px; }
+  .brand-hero-media { min-height: 340px; height: 76vw; max-height: 470px; }
+  .brand-hero-media img { object-position: 85% center; }
+  .brand-hero-media::after { background: linear-gradient(180deg,#fff5dd 0%,#fff5dd00 15%); }
+  .brand-shipping { justify-content: flex-start; flex-wrap: wrap; gap: 12px 24px; padding: 25px 6vw; }
+  .brand-shipping > span { width: 100%; font-size: 25px; }
+  .brand-shipping p,.brand-shipping a { font-size: 15px; }
+}
+@media(min-width:721px) and (max-width:1000px) {
+  .fit-home .footer-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px; }
+}
+@media(max-width:360px) {
+  .brand-hero h1 { font-size: 11.5vw; }
+  .brand-hero-actions { gap: 14px; }
+  .brand-hero-story { font-size: 13px; }
+  .brand-hero-cta { font-size: 15px; gap: 20px; padding-inline: 20px; }
+}
