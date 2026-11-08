@@ -2879,6 +2879,7 @@
 </style>
 <meta name="description" content="Big flavor. Proper crunch. Discover potato chips kettle cooked in Wagyu tallow, without seed oils. Shop six flavors or build your own box.">
 <link rel="preload" as="image" href="thaichilimain.png">
+<link rel="preload" as="font" type="font/ttf" href="assets/fonts/PermanentMarker-Regular.ttf" crossorigin>
   <link rel="stylesheet" href="assets/experience/site.css">
   <script src="assets/experience/availability.js"></script>
   <script src="assets/experience/site.js" defer></script>
@@ -3192,12 +3193,11 @@
 <button aria-label="Close offer" class="promo-close" type="button">×</button>
 <p class="promo-kicker">A crisp welcome</p>
 <h2 id="promo-title">Take 15% off</h2>
-<p class="promo-copy">Your first order deserves a little extra crunch. Enter your email and we’ll unlock your welcome code.</p>
+<p class="promo-copy">Your first order deserves a little extra crunch. Your welcome code is on us.</p>
 <form class="promo-form" id="promo-form">
-<input id="promo-email" name="email" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
 <button type="submit">Get my code</button>
 </form>
-<p class="promo-fine-print">First orders only. By signing up, you agree to receive occasional flavor updates.</p>
+<p class="promo-fine-print">First orders only. No email signup needed.</p>
 <div class="promo-success" id="promo-success" hidden aria-live="polite">
 <p>Your 15% off code</p>
 <span class="promo-code">WELCOME15</span>
@@ -3275,11 +3275,8 @@
 </div>
 <div class="footer-col">
 <h3>Stay Crisp</h3>
-<span>Get flavor drops and restock notes.</span>
-<form class="newsletter">
-<input aria-label="Email address" placeholder="Email address" type="email"/>
-<button type="submit">Join</button>
-</form>
+<span>Follow along for flavor drops and restock notes.</span>
+<a href="https://www.instagram.com/friedintallow/" target="_blank" rel="noopener noreferrer">@friedintallow</a>
 </div>
 </div>
 <div class="footer-bottom">
@@ -3764,26 +3761,21 @@
       window.location.assign("checkout.html");
     });
 
-    document.querySelector(".newsletter")?.addEventListener("submit", (event) => {
-      event.preventDefault();
-      showToast("You are on the flavor list.");
-    });
-
-    const promoStorageKey = "friedintallow-welcome-offer";
+    let welcomeOfferDismissed = false;
 
     function closePromo() {
       promoBackdrop.classList.remove("open");
       promoBackdrop.setAttribute("aria-hidden", "true");
-      localStorage.setItem(promoStorageKey, "dismissed");
+      welcomeOfferDismissed = true;
       document.body.classList.remove("modal-open");
     }
 
     function openPromo() {
-      if (localStorage.getItem(promoStorageKey)) return;
+      if (welcomeOfferDismissed) return;
       promoBackdrop.classList.add("open");
       promoBackdrop.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
-      setTimeout(() => document.querySelector("#promo-email")?.focus(), 280);
+      setTimeout(() => promoForm.querySelector("button")?.focus(), 280);
     }
 
     promoBackdrop.querySelector(".promo-close")?.addEventListener("click", closePromo);
@@ -3795,10 +3787,9 @@
       if (!promoForm.reportValidity()) return;
       promoForm.hidden = true;
       promoSuccess.hidden = false;
-      localStorage.setItem(promoStorageKey, "claimed");
     });
 
-    document.querySelector(".welcome-trigger")?.addEventListener("click", () => { localStorage.removeItem(promoStorageKey); openPromo(); });
+    document.querySelector(".welcome-trigger")?.addEventListener("click", () => { welcomeOfferDismissed = false; openPromo(); });
 
     const checkoutStatus = new URLSearchParams(window.location.search).get("checkout");
     if (checkoutStatus === "success") {
